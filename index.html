@@ -3,233 +3,153 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Professional Portfolio</title>
+<title>Jack -- 3D Creator</title>
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-  *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial;
-    scroll-behavior:smooth;
+  body {
+    margin: 0;
+    background: #0C0C0C;
+    font-family: 'Kanit', sans-serif;
+    overflow-x: hidden;
   }
 
-  body{
-    background:#0b0b0f;
-    color:white;
+  .hero-heading {
+    background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  /* NAV */
-  nav{
-    position:fixed;
-    width:100%;
-    top:0;
-    background:#111;
-    padding:15px 30px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    z-index:1000;
+  .marquee {
+    display: flex;
+    gap: 12px;
+    animation: scroll 25s linear infinite;
   }
 
-  nav h2{
-    color:#b76cff;
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 
-  nav a{
-    color:white;
-    margin-left:20px;
-    text-decoration:none;
-    transition:0.3s;
+  .card:hover {
+    transform: scale(1.05);
+    transition: 0.4s;
   }
-
-  nav a:hover{
-    color:#b76cff;
-  }
-
-  /* HERO */
-  .hero{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    background:radial-gradient(circle,#1a0033,#000);
-  }
-
-  .hero h1{
-    font-size:50px;
-    color:#fff;
-    animation:fade 2s ease;
-  }
-
-  .hero span{
-    color:#b76cff;
-  }
-
-  .hero p{
-    margin-top:10px;
-    color:#ccc;
-  }
-
-  .btn{
-    margin-top:20px;
-    padding:12px 25px;
-    background:#b76cff;
-    border:none;
-    border-radius:25px;
-    color:white;
-    text-decoration:none;
-    transition:0.3s;
-  }
-
-  .btn:hover{
-    transform:scale(1.1);
-    background:#9b4dff;
-  }
-
-  /* SECTIONS */
-  section{
-    padding:80px 10%;
-  }
-
-  h2{
-    color:#b76cff;
-    margin-bottom:20px;
-    text-align:center;
-  }
-
-  /* ABOUT */
-  .about p{
-    text-align:center;
-    color:#ccc;
-    max-width:700px;
-    margin:auto;
-  }
-
-  /* PROJECTS */
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-    margin-top:30px;
-  }
-
-  .card{
-    background:#16161d;
-    border-radius:12px;
-    overflow:hidden;
-    transition:0.4s;
-    border:1px solid #2a2a2a;
-  }
-
-  .card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 0 20px #7a2cff;
-  }
-
-  .card img{
-    width:100%;
-    height:150px;
-    object-fit:cover;
-  }
-
-  .card p{
-    padding:10px;
-    text-align:center;
-    color:#ddd;
-  }
-
-  /* CONTACT */
-  .contact{
-    text-align:center;
-  }
-
-  .contact a{
-    display:inline-block;
-    margin-top:15px;
-  }
-
-  /* FOOTER */
-  footer{
-    text-align:center;
-    padding:20px;
-    background:#111;
-    color:#aaa;
-  }
-
-  /* ANIMATION */
-  @keyframes fade{
-    from{opacity:0; transform:translateY(-20px);}
-    to{opacity:1; transform:translateY(0);}
-  }
-
 </style>
 </head>
 
-<body>
-
-<!-- NAV -->
-<nav>
-  <h2>Mehak Hina</h2>
-  <div>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+<body class="text-white">
 
 <!-- HERO -->
-<div class="hero">
-  <h1>I am a <span>Web Developer</span> & Designer</h1>
-  <p>Modern • Clean • Professional Designs</p>
-  <a href="#projects" class="btn">View My Work</a>
-</div>
+<section class="h-screen flex flex-col justify-between px-6 pt-6">
+
+  <nav class="flex justify-between text-[#D7E2EA] uppercase text-sm md:text-lg">
+    <a href="#">About</a>
+    <a href="#">Price</a>
+    <a href="#">Projects</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <h1 class="hero-heading text-[15vw] font-black uppercase text-center leading-none">
+    Hi, i&apos;m jack
+  </h1>
+
+  <div class="flex justify-between items-end pb-8 text-[#D7E2EA]">
+    <p class="max-w-[220px] text-xs uppercase">
+      a 3d creator driven by crafting striking and unforgettable projects
+    </p>
+
+    <button class="px-6 py-3 bg-gradient-to-r from-purple-900 to-pink-600 rounded-full uppercase text-xs">
+      Contact Me
+    </button>
+  </div>
+
+</section>
+
+<!-- MARQUEE -->
+<section class="py-20 overflow-hidden">
+  <div class="marquee">
+    <img src="https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif" class="w-[300px] rounded-xl"/>
+    <img src="https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif" class="w-[300px] rounded-xl"/>
+    <img src="https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif" class="w-[300px] rounded-xl"/>
+    <img src="https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif" class="w-[300px] rounded-xl"/>
+  </div>
+</section>
 
 <!-- ABOUT -->
-<section id="about" class="about">
-  <h2>About Me</h2>
-  <p>
-    I design and develop modern websites, logos and UI designs.  
-    My focus is clean UI, strong branding and professional user experience that converts visitors into clients.
+<section class="min-h-screen flex flex-col items-center justify-center px-6 text-center">
+  <h2 class="hero-heading text-[10vw] font-black uppercase">About me</h2>
+
+  <p class="text-[#D7E2EA] max-w-[600px] mt-10">
+    With more than five years of experience in design, i focus on branding, web design, and user experience.
+    I enjoy building modern digital experiences that stand out.
   </p>
+
+  <button class="mt-10 px-8 py-3 border border-white rounded-full uppercase">
+    Contact Me
+  </button>
+</section>
+
+<!-- SERVICES -->
+<section class="bg-white text-black rounded-t-[40px] px-6 py-20">
+  <h2 class="text-center text-5xl font-black uppercase mb-10">Services</h2>
+
+  <div class="space-y-10 max-w-4xl mx-auto">
+
+    <div>
+      <h3 class="text-3xl font-bold">3D Modeling</h3>
+      <p class="text-sm opacity-70">Creation of detailed objects and environments.</p>
+    </div>
+
+    <div>
+      <h3 class="text-3xl font-bold">Rendering</h3>
+      <p class="text-sm opacity-70">Photorealistic high-quality renders.</p>
+    </div>
+
+    <div>
+      <h3 class="text-3xl font-bold">Web Design</h3>
+      <p class="text-sm opacity-70">Modern and responsive websites.</p>
+    </div>
+
+  </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects">
-  <h2>My Projects</h2>
+<section class="text-white px-6 py-20">
 
-  <div class="grid">
+  <h2 class="hero-heading text-[10vw] font-black uppercase text-center">
+    Projects
+  </h2>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d" />
-      <p>Website Design</p>
+  <div class="grid md:grid-cols-3 gap-6 mt-10">
+
+    <div class="card bg-[#16161d] p-4 rounded-xl">
+      <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d" class="rounded-xl"/>
+      <p class="mt-2">Nextlevel Studio</p>
     </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6" />
-      <p>Logo Design</p>
+    <div class="card bg-[#16161d] p-4 rounded-xl">
+      <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6" class="rounded-xl"/>
+      <p class="mt-2">Aura Brand</p>
     </div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d" />
-      <p>UI/UX Design</p>
+    <div class="card bg-[#16161d] p-4 rounded-xl">
+      <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d" class="rounded-xl"/>
+      <p class="mt-2">Solaris Digital</p>
     </div>
 
   </div>
-</section>
 
-<!-- CONTACT -->
-<section id="contact" class="contact">
-  <h2>Contact Me</h2>
-  <p>Let’s build something amazing together 🚀</p>
-  <a class="btn" href="mailto:example@email.com">Send Email</a>
 </section>
 
 <!-- FOOTER -->
-<footer>
-  © 2026 Mehak Hina | All Rights Reserved
+<footer class="text-center py-10 text-gray-400">
+  © 2026 Jack -- 3D Creator
 </footer>
 
 </body>
