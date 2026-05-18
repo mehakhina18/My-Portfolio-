@@ -3,12 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Hoori -- 3D Creator</title>
+<title>Jack -- 3D Creator</title>
 
-<!-- Tailwind CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- Font -->
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
@@ -25,131 +23,161 @@
     -webkit-text-fill-color: transparent;
   }
 
-  .marquee {
-    display: flex;
-    gap: 12px;
-    animation: scroll 25s linear infinite;
-  }
+ .card {
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
 
-  @keyframes scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  .card:hover {
-    transform: scale(1.05);
-    transition: 0.4s;
-  }
+.card:hover {
+  box-shadow: 0 20px 60px rgba(128,0,255,0.25);
+}
 </style>
 </head>
 
 <body class="text-white">
 
+<!-- NAV -->
+<nav class="flex justify-between px-6 py-6 text-[#D7E2EA] uppercase text-sm md:text-lg">
+  <div class="font-bold text-purple-400">Jack</div>
+  <div class="flex gap-6">
+    <a href="#about" class="hover:opacity-60">About</a>
+    <a href="#services" class="hover:opacity-60">Services</a>
+    <a href="#projects" class="hover:opacity-60">Projects</a>
+    <a href="#contact" class="hover:opacity-60">Contact</a>
+  </div>
+</nav>
+
 <!-- HERO -->
-<section class="h-screen flex flex-col justify-between px-6 pt-6">
+<section class="h-screen flex flex-col justify-center items-center text-center px-6">
 
-  <nav class="flex justify-between text-[#D7E2EA] uppercase text-sm md:text-lg">
-    <a href="#">About</a>
-    <a href="#">Price</a>
-    <a href="#">Projects</a>
-    <a href="#">Contact</a>
-  </nav>
-
-  <h1 class="hero-heading text-[15vw] font-black uppercase text-center leading-none">
-    Hi, i&apos;m hoori
+  <h1 class="hero-heading text-[14vw] font-black uppercase leading-none">
+    Hi, i&apos;m jack
   </h1>
 
-  <div class="flex justify-between items-end pb-8 text-[#D7E2EA]">
-    <p class="max-w-[220px] text-xs uppercase">
-      a 3d creator driven by crafting striking and unforgettable projects
-    </p>
+  <p class="text-[#D7E2EA] max-w-md mt-6 text-sm md:text-lg">
+    3D Creator • Designer • Web Developer  
+    Crafting modern digital experiences
+  </p>
 
-    <button class="px-6 py-3 bg-gradient-to-r from-purple-900 to-pink-600 rounded-full uppercase text-xs">
-      Contact Me
-    </button>
-  </div>
+  <a href="#projects" class="mt-8 px-8 py-3 bg-purple-600 rounded-full uppercase tracking-widest hover:bg-purple-500 transition">
+    View Work
+  </a>
 
-</section>
-
-<!-- MARQUEE -->
-<section class="py-20 overflow-hidden">
-  <div class="marquee">
-    <img src="https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif" class="w-[300px] rounded-xl"/>
-    <img src="https://motionsites.ai/assets/hero-codenest-preview-Cgppc2qV.gif" class="w-[300px] rounded-xl"/>
-    <img src="https://motionsites.ai/assets/hero-vex-ventures-preview-BczMFIiw.gif" class="w-[300px] rounded-xl"/>
-    <img src="https://motionsites.ai/assets/hero-stellar-ai-v2-preview-DjvxjG3C.gif" class="w-[300px] rounded-xl"/>
-  </div>
 </section>
 
 <!-- ABOUT -->
-<section class="min-h-screen flex flex-col items-center justify-center px-6 text-center">
-  <h2 class="hero-heading text-[10vw] font-black uppercase">About me</h2>
+<section id="about" class="py-24 text-center px-6">
+  <h2 class="hero-heading text-6xl font-black uppercase">About Me</h2>
 
-  <p class="text-[#D7E2EA] max-w-[600px] mt-10">
-  Luxury Graphic Designer & Web Developer creating refined, high-impact digital experiences with modern  asthetics and flawless execution.
+  <p class="text-[#D7E2EA] max-w-2xl mx-auto mt-10 leading-relaxed">
+    I am a creative 3D artist and web developer focused on building modern, clean, and visually powerful digital experiences.
+    My goal is to turn ideas into high-quality visuals and interactive designs that stand out.
   </p>
-
-  <button class="mt-10 px-8 py-3 border border-white rounded-full uppercase">
-    Contact Me
-  </button>
 </section>
 
 <!-- SERVICES -->
-<section class="bg-white text-black rounded-t-[40px] px-6 py-20">
-  <h2 class="text-center text-5xl font-black uppercase mb-10">Services</h2>
+<section id="services" class="bg-white text-black py-24 px-6 rounded-t-[40px]">
 
-  <div class="space-y-10 max-w-4xl mx-auto">
+  <h2 class="text-5xl font-black text-center uppercase mb-16">Services</h2>
 
-    <div>
-      <h3 class="text-3xl font-bold">3D Modeling</h3>
-      <p class="text-sm opacity-70">Creation of detailed objects and environments.</p>
+  <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+
+    <div class="p-6 border rounded-xl">
+      <h3 class="text-2xl font-bold">3D Modeling</h3>
+      <p class="text-sm opacity-70 mt-2">High-quality models for products, games, and visuals.</p>
     </div>
 
-    <div>
-      <h3 class="text-3xl font-bold">Rendering</h3>
-      <p class="text-sm opacity-70">Photorealistic high-quality renders.</p>
+    <div class="p-6 border rounded-xl">
+      <h3 class="text-2xl font-bold">Rendering</h3>
+      <p class="text-sm opacity-70 mt-2">Realistic lighting, textures and cinematic renders.</p>
     </div>
 
-    <div>
-      <h3 class="text-3xl font-bold">Web Design</h3>
-      <p class="text-sm opacity-70">Modern and responsive websites.</p>
+    <div class="p-6 border rounded-xl">
+      <h3 class="text-2xl font-bold">Web Design</h3>
+      <p class="text-sm opacity-70 mt-2">Modern responsive websites with strong UI/UX.</p>
     </div>
 
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section class="text-white px-6 py-20">
+<section id="projects" class="py-24 px-6 text-center">
 
-  <h2 class="hero-heading text-[10vw] font-black uppercase text-center">
-    Projects
-  </h2>
+  <h2 class="hero-heading text-6xl font-black uppercase mb-16">Projects</h2>
 
-  <div class="grid md:grid-cols-3 gap-6 mt-10">
+  <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
 
-    <div class="card bg-[#16161d] p-4 rounded-xl">
+    <div class="card bg-[#16161d] p-4 rounded-2xl">
       <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d" class="rounded-xl"/>
-      <p class="mt-2">Nextlevel Studio</p>
+      <h3 class="mt-4">Nextlevel Studio</h3>
     </div>
 
-    <div class="card bg-[#16161d] p-4 rounded-xl">
+    <div class="card bg-[#16161d] p-4 rounded-2xl">
       <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6" class="rounded-xl"/>
-      <p class="mt-2">Aura Brand</p>
+      <h3 class="mt-4">Aura Brand</h3>
     </div>
 
-    <div class="card bg-[#16161d] p-4 rounded-xl">
+    <div class="card bg-[#16161d] p-4 rounded-2xl">
       <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d" class="rounded-xl"/>
-      <p class="mt-2">Solaris Digital</p>
+      <h3 class="mt-4">Solaris Digital</h3>
     </div>
 
   </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-24 text-center px-6">
+
+  <h2 class="hero-heading text-6xl font-black uppercase">Let’s Work Together</h2>
+
+  <p class="text-[#D7E2EA] mt-6">
+    Have a project in mind? Let’s build something amazing.
+  </p>
+
+  <a href="mailto:example@email.com" class="mt-8 inline-block px-10 py-3 bg-purple-600 rounded-full uppercase tracking-widest hover:bg-purple-500 transition">
+    Contact Me
+  </a>
 
 </section>
 
 <!-- FOOTER -->
-<footer class="text-center py-10 text-gray-400">
-  © 2026 Jack -- 3D Creator
+<footer class="text-center py-10 text-gray-500">
+  © 2026 Jack — 3D Creator. All rights reserved.
 </footer>
+<script>
+const cards = document.querySelectorAll(".card");
 
+cards.forEach(card => {
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * -10;
+    const rotateY = ((x - centerX) / centerX) * 10;
+
+    card.style.transform = `
+      perspective(1000px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      scale(1.05)
+    `;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = `
+      perspective(1000px)
+      rotateX(0deg)
+      rotateY(0deg)
+      scale(1)
+    `;
+  });
+});
+</script>
 </body>
 </html>
