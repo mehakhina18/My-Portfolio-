@@ -10,65 +10,74 @@
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-  body {
-    margin: 0;
-    background: #0C0C0C;
-    font-family: 'Kanit', sans-serif;
-    overflow-x: hidden;
-    cursor: none;
+
+body{
+  margin:0;
+  background:#0C0C0C;
+  font-family:'Kanit',sans-serif;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* CURSOR */
+.cursor{
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  position:fixed;
+  background:radial-gradient(circle,#b300ff,transparent);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  z-index:9999;
+}
+
+/* HERO TEXT */
+.hero-heading{
+  background:linear-gradient(180deg,#646973 0%,#BBCCD7 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* BG GLOW */
+.glow{
+  position:absolute;
+  width:300px;
+  height:300px;
+  background:rgba(128,0,255,0.2);
+  filter:blur(120px);
+  border-radius:50%;
+  animation:float 8s infinite ease-in-out;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-40px);}
+}
+
+/* CARDS */
+.card{
+  transform-style:preserve-3d;
+  transition:transform .2s ease,box-shadow .3s ease;
+  will-change:transform;
+}
+
+.card:hover{
+  box-shadow:0 25px 80px rgba(179,0,255,0.35);
+}
+
+/* MOBILE */
+@media (max-width:768px){
+
+  body{
+    cursor:auto;
   }
 
-  /* CURSOR GLOW */
-  .cursor {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    position: fixed;
-    background: radial-gradient(circle, #b300ff, transparent);
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
+  .cursor{
+    display:none;
   }
 
-  /* HERO TEXT */
-  .hero-heading {
-    background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+}
 
-  /* FLOATING BG LIGHTS */
-  .glow {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: rgba(128,0,255,0.2);
-    filter: blur(120px);
-    border-radius: 50%;
-    animation: float 8s infinite ease-in-out;
-  }
-
-  @keyframes float {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-40px); }
-  }
-
-  /* 3D CARDS */
-  .card {
-    transform-style: preserve-3d;
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
-    will-change: transform;
-  }
-
-  .card:hover {
-    box-shadow: 0 25px 80px rgba(179,0,255,0.35);
-  }
-
-  /* HIDE CURSOR ON MOBILE */
-  @media (max-width: 768px) {
-    body { cursor: auto; }
-    .cursor { display:none; }
-  }
 </style>
 </head>
 
@@ -76,187 +85,380 @@
 
 <div class="cursor" id="cursor"></div>
 
-<!-- BACKGROUND GLOWS -->
+<!-- BG GLOW -->
 <div class="glow top-20 left-10"></div>
 <div class="glow bottom-20 right-10"></div>
 
 <!-- NAV -->
 <nav class="flex flex-wrap justify-between items-center px-5 py-6 uppercase text-[#D7E2EA] gap-3">
-  <div class="font-bold text-purple-400">Portfolio</div>
+
+  <div class="font-bold text-purple-400">
+    Portfolio
+  </div>
 
   <div class="flex flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm md:text-base">
-    <a href="#about" class="hover:opacity-60">About</a>
-    <a href="#skills" class="hover:opacity-60">Skills</a>
-    <a href="#projects" class="hover:opacity-60">Work</a>
-    <a href="#contact" class="hover:opacity-60">Contact</a>
+
+    <a href="#about" class="hover:opacity-60">
+      About
+    </a>
+
+    <a href="#skills" class="hover:opacity-60">
+      Skills
+    </a>
+
+    <a href="#projects" class="hover:opacity-60">
+      Work
+    </a>
+
+    <a href="#contact" class="hover:opacity-60">
+      Contact
+    </a>
+
   </div>
+
 </nav>
 
 <!-- HERO -->
-<!-- HERO -->
 <section class="h-screen flex flex-col justify-center items-center text-center px-6 relative">
 
-  <!-- Cute hijabi girl image -->
 <img 
-  src="https://i.pinimg.com/736x/60/0f/15/600f15ee3e287003d876fcbaca009026.jpg"
-  alt="Profile Image"
-  class="w-32 h-32 md:w-40 md:h-40 rounded-full object-contain bg-[#16161d] border-4 border-purple-500 mb-6 shadow-lg p-2"
+src="https://i.pinimg.com/736x/60/0f/15/600f15ee3e287003d876fcbaca009026.jpg"
+alt="Profile Image"
+class="w-32 h-32 md:w-40 md:h-40 rounded-full object-contain bg-[#16161d] border-4 border-purple-500 mb-6 shadow-lg p-2"
 />
-  <!-- NAME -->
-  <h2 class="text-[#D7E2EA] text-xl md:text-2xl uppercase tracking-widest">
-    Shehzadi Hoorain
-  </h2>
 
-  <!-- MAIN HEADING -->
-  <h1 class="hero-heading text-[10vw] md:text-[8vw] font-black uppercase leading-none mt-4">
-    Designer & Developer
-  </h1>
+<h2 class="text-[#D7E2EA] text-xl md:text-2xl uppercase tracking-widest">
+  Shehzadi Hoorain
+</h2>
 
-  <!-- SUB TEXT -->
-  <p class="text-[#D7E2EA] max-w-xl mt-6 text-sm md:text-lg">
-    I create modern graphic designs and high-performance websites with clean UI and strong branding.
-  </p>
+<h1 class="hero-heading text-[10vw] md:text-[8vw] font-black uppercase leading-none mt-4">
+  Designer & Developer
+</h1>
 
-  <!-- BUTTONS -->
-  <div class="flex gap-4 mt-8">
-    <a class="px-8 py-3 bg-purple-600 rounded-full uppercase tracking-widest hover:scale-105 transition">
-      View Work
-    </a>
+<p class="text-[#D7E2EA] max-w-xl mt-6 text-sm md:text-lg">
+  I create modern graphic designs and high-performance websites with clean UI and strong branding.
+</p>
 
-<a 
+<div class="flex gap-4 mt-8">
+
+  <a class="px-8 py-3 bg-purple-600 rounded-full uppercase tracking-widest hover:scale-105 transition">
+    View Work
+  </a>
+
+  <a 
   href="https://www.fiverr.com/s/xXzj8E4"
   target="_blank"
-  class="px-8 py-3 bg-purple-600 rounded-full uppercase tracking-widest hover:scale-105 transition inline-block"
->
-  Hire Me
-</a>
-  </div>
+  class="px-8 py-3 bg-purple-600 rounded-full uppercase tracking-widest hover:scale-105 transition inline-block">
+    Hire Me
+  </a>
+
+</div>
 
 </section>
+
 <!-- ABOUT -->
 <section id="about" class="py-24 px-6 text-center">
 
-  <h2 class="hero-heading text-5xl font-black uppercase">About Me</h2>
+<h2 class="hero-heading text-5xl font-black uppercase">
+  About Me
+</h2>
 
-  <p class="text-[#D7E2EA] max-w-3xl mx-auto mt-8 leading-relaxed">
-    I am a creative Graphic Designer and Web Developer who builds clean, modern, and impactful digital experiences.
-    My focus is branding, UI/UX, and responsive web development that helps businesses grow online.
-  </p>
+<p class="text-[#D7E2EA] max-w-3xl mx-auto mt-8 leading-relaxed">
+
+I am a creative Graphic Designer and Web Developer who builds clean, modern, and impactful digital experiences.
+My focus is branding, UI/UX, and responsive web development that helps businesses grow online.
+
+</p>
 
 </section>
 
 <!-- SKILLS -->
 <section id="skills" class="py-24 px-6 text-center bg-white text-black rounded-t-[40px]">
 
-  <h2 class="text-5xl font-black uppercase mb-16">Skills</h2>
+<h2 class="text-5xl font-black uppercase mb-16">
+  Skills
+</h2>
 
-  <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+<div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
 
-    <div class="p-6 border rounded-xl">
-      <h3 class="text-2xl font-bold">🎨 Graphic Design</h3>
-      <p class="text-sm opacity-70 mt-2">Logos, branding, posters, social media designs</p>
-    </div>
+<div class="p-6 border rounded-xl">
 
-    <div class="p-6 border rounded-xl">
-      <h3 class="text-2xl font-bold">💻 Web Development</h3>
-      <p class="text-sm opacity-70 mt-2">Responsive websites, UI/UX, frontend development</p>
-    </div>
+<h3 class="text-2xl font-bold">
+  🎨 Graphic Design
+</h3>
 
-  </div>
+<p class="text-sm opacity-70 mt-2">
+  Logos, branding, posters, social media designs
+</p>
+
+</div>
+
+<div class="p-6 border rounded-xl">
+
+<h3 class="text-2xl font-bold">
+  💻 Web Development
+</h3>
+
+<p class="text-sm opacity-70 mt-2">
+  Responsive websites, UI/UX, frontend development
+</p>
+
+</div>
+
+</div>
 
 </section>
 
-<!-- PROJECTS -->
 <!-- PROJECTS -->
 <section id="projects" class="py-24 px-6 text-center">
 
-  <h2 class="hero-heading text-5xl font-black uppercase mb-16">
-    Projects
-  </h2>
+<h2 class="hero-heading text-5xl font-black uppercase mb-16">
+  Projects
+</h2>
 
-  <div class="grid md:grid-cols-3 gap-8">
+<div class="grid md:grid-cols-3 gap-8">
 
-    <!-- GRAPHIC DESIGN -->
-    <div class="card bg-[#16161d] p-4 rounded-2xl">
-      <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead" class="rounded-xl"/>
-      <h3 class="mt-4 font-semibold">Posters & Branding</h3>
-      <p class="text-sm text-gray-400">Creative poster designs & brand identity work</p>
-    </div>
+<!-- BRANDING -->
+<div 
+class="card bg-[#16161d] p-4 rounded-2xl cursor-pointer"
+onclick="openGallery('branding')">
 
-    <!-- WEB DESIGN -->
-    <div class="card bg-[#16161d] p-4 rounded-2xl">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" class="rounded-xl"/>
-      <h3 class="mt-4 font-semibold">Websites & UI Design</h3>
-      <p class="text-sm text-gray-400">Modern responsive website interfaces</p>
-    </div>
+<img 
+src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead"
+class="rounded-xl"
+/>
 
-    <!-- LOGO + THANK YOU CARDS -->
-    <div class="card bg-[#16161d] p-4 rounded-2xl">
-      <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d" class="rounded-xl"/>
-      <h3 class="mt-4 font-semibold">Logo & Thank You Cards</h3>
-      <p class="text-sm text-gray-400">Logo design + custom client appreciation cards</p>
-    </div>
+<h3 class="mt-4 font-semibold">
+  Posters & Branding
+</h3>
 
-  </div>
+<p class="text-sm text-gray-400">
+  Creative poster designs & brand identity work
+</p>
+
+</div>
+
+<!-- WEB -->
+<div 
+class="card bg-[#16161d] p-4 rounded-2xl cursor-pointer"
+onclick="openGallery('web')">
+
+<img 
+src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+class="rounded-xl"
+/>
+
+<h3 class="mt-4 font-semibold">
+  Websites & UI Design
+</h3>
+
+<p class="text-sm text-gray-400">
+  Modern responsive website interfaces
+</p>
+
+</div>
+
+<!-- LOGO -->
+<div 
+class="card bg-[#16161d] p-4 rounded-2xl cursor-pointer"
+onclick="openGallery('logo')">
+
+<img 
+src="https://images.unsplash.com/photo-1626785774573-4b799315345d"
+class="rounded-xl"
+/>
+
+<h3 class="mt-4 font-semibold">
+  Logo & Thank You Cards
+</h3>
+
+<p class="text-sm text-gray-400">
+  Logo design + custom client appreciation cards
+</p>
+
+</div>
+
+</div>
 
 </section>
+
+<!-- POPUP GALLERY -->
+<div 
+id="galleryModal"
+class="fixed inset-0 bg-black/90 hidden z-50 overflow-y-auto p-10">
+
+<div class="max-w-6xl mx-auto">
+
+<div class="flex justify-end mb-8">
+
+<button 
+onclick="closeGallery()"
+class="text-white text-4xl hover:text-purple-400">
+
+&times;
+
+</button>
+
+</div>
+
+<h2 
+id="galleryTitle"
+class="text-4xl font-black uppercase mb-10 text-center hero-heading">
+</h2>
+
+<div 
+id="galleryImages"
+class="grid md:grid-cols-3 gap-6">
+</div>
+
+</div>
+
+</div>
 
 <!-- CONTACT -->
 <section id="contact" class="py-24 text-center px-6">
 
-  <h2 class="hero-heading text-5xl font-black uppercase">Let’s Work Together</h2>
+<h2 class="hero-heading text-5xl font-black uppercase">
+  Let’s Work Together
+</h2>
 
-  <p class="text-[#D7E2EA] mt-6">Ready to build something amazing?</p>
+<p class="text-[#D7E2EA] mt-6">
+  Ready to build something amazing?
+</p>
 
 <a 
-  href="https://www.fiverr.com/s/xXzj8E4"
-  target="_blank"
-  class="px-8 py-3 border border-white rounded-full uppercase hover:bg-white hover:text-black transition inline-block"
->
-  Contact Me
+href="https://www.fiverr.com/s/xXzj8E4"
+target="_blank"
+class="px-8 py-3 border border-white rounded-full uppercase hover:bg-white hover:text-black transition inline-block">
+
+Contact Me
+
 </a>
 
 </section>
 
 <!-- FOOTER -->
 <footer class="text-center py-10 text-gray-500">
-  © 2026 Portfolio | Graphic Designer & Web Developer
+© 2026 Portfolio | Graphic Designer & Web Developer
 </footer>
 
 <script>
-/* CURSOR */
-const cursor = document.getElementById("cursor");
 
-document.addEventListener("mousemove", (e) => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
+/* CURSOR */
+const cursor=document.getElementById("cursor");
+
+document.addEventListener("mousemove",(e)=>{
+
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+
 });
 
 /* 3D CARDS */
-const cards = document.querySelectorAll(".card");
+const cards=document.querySelectorAll(".card");
 
-cards.forEach(card => {
-  card.addEventListener("mousemove", (e) => {
-    const rect = card.getBoundingClientRect();
+cards.forEach(card=>{
 
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+card.addEventListener("mousemove",(e)=>{
 
-    const rotateX = ((y - rect.height/2) / rect.height) * -15;
-    const rotateY = ((x - rect.width/2) / rect.width) * 15;
+const rect=card.getBoundingClientRect();
 
-    card.style.transform = `
-      perspective(1000px)
-      rotateX(${rotateX}deg)
-      rotateY(${rotateY}deg)
-      scale(1.05)
-    `;
-  });
+const x=e.clientX-rect.left;
+const y=e.clientY-rect.top;
 
-  card.addEventListener("mouseleave", () => {
-    card.style.transform = "perspective(1000px) rotateX(0) rotateY(0) scale(1)";
-  });
+const rotateX=((y-rect.height/2)/rect.height)*-15;
+const rotateY=((x-rect.width/2)/rect.width)*15;
+
+card.style.transform=`
+perspective(1000px)
+rotateX(${rotateX}deg)
+rotateY(${rotateY}deg)
+scale(1.05)
+`;
+
 });
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.transform="perspective(1000px) rotateX(0) rotateY(0) scale(1)";
+
+});
+
+});
+
+/* GALLERY DATA */
+const galleries={
+
+branding:{
+title:"Posters & Branding",
+images:[
+"https://images.unsplash.com/photo-1545239351-1141bd82e8a6",
+"https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+"https://images.unsplash.com/photo-1498050108023-c5249f4df085"
+]
+},
+
+web:{
+title:"Websites & UI Design",
+images:[
+"https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+"https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+"https://images.unsplash.com/photo-1555066931-4365d14bab8c"
+]
+},
+
+logo:{
+title:"Logo & Thank You Cards",
+images:[
+"https://images.unsplash.com/photo-1586717791821-3f44a563fa4c",
+"https://images.unsplash.com/photo-1609921212029-bb5a28e60960",
+"https://images.unsplash.com/photo-1561070791-2526d30994b5"
+]
+}
+
+};
+
+/* OPEN GALLERY */
+function openGallery(category){
+
+const modal=document.getElementById("galleryModal");
+const title=document.getElementById("galleryTitle");
+const imagesContainer=document.getElementById("galleryImages");
+
+title.innerText=galleries[category].title;
+
+imagesContainer.innerHTML="";
+
+galleries[category].images.forEach(img=>{
+
+imagesContainer.innerHTML+=`
+
+<div class="bg-[#16161d] p-3 rounded-2xl">
+
+<img 
+src="${img}"
+class="rounded-xl w-full h-[250px] object-cover hover:scale-105 transition duration-300"
+/>
+
+</div>
+
+`;
+
+});
+
+modal.classList.remove("hidden");
+
+}
+
+/* CLOSE GALLERY */
+function closeGallery(){
+
+document
+.getElementById("galleryModal")
+.classList.add("hidden");
+
+}
+
 </script>
 
 </body>
