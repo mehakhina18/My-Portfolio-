@@ -1,176 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Portfolio | Designer & Developer</title>
+<title>Hoorain | 3D Portfolio</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
-/* SMOOTH SCROLL */
 html{
-  scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
 
 body{
-  margin:0;
-  background:#0C0C0C;
-  font-family:'Kanit',sans-serif;
-  overflow-x:hidden;
-  cursor:none;
+margin:0;
+font-family:'Kanit',sans-serif;
+background:#050505;
+overflow-x:hidden;
+color:white;
+cursor:none;
 }
 
-/* CURSOR */
+/* CUSTOM CURSOR */
 .cursor{
-  width:20px;
-  height:20px;
-  border-radius:50%;
-  position:fixed;
-  background:radial-gradient(circle,#b300ff,transparent);
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  z-index:9999;
+width:20px;
+height:20px;
+border-radius:50%;
+position:fixed;
+background:radial-gradient(circle,#a855f7,transparent);
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:99999;
+mix-blend-mode:screen;
 }
 
-/* HERO TEXT */
-.hero-heading{
-  background:linear-gradient(180deg,#646973 0%,#BBCCD7 100%);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-/* BG GLOW */
-.glow{
-  position:absolute;
-  width:300px;
-  height:300px;
-  background:rgba(128,0,255,0.2);
-  filter:blur(120px);
-  border-radius:50%;
-  animation:float 8s infinite ease-in-out;
+/* PARTICLES */
+.particle{
+position:absolute;
+border-radius:50%;
+background:rgba(168,85,247,0.15);
+filter:blur(2px);
+animation:float 10s infinite ease-in-out;
 }
 
 @keyframes float{
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(-40px);
-  }
+0%,100%{
+transform:translateY(0px);
+}
+50%{
+transform:translateY(-40px);
+}
 }
 
-/* CARDS */
+/* HERO TEXT */
+.hero-text{
+background:linear-gradient(180deg,#ffffff,#8b8b8b);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+/* GLASS */
+.glass{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.1);
+box-shadow:0 0 40px rgba(168,85,247,0.15);
+}
+
+/* 3D CARD */
 .card{
-  transform-style:preserve-3d;
-  transition:transform .2s ease, box-shadow .3s ease;
-  will-change:transform;
-  position:relative;
-  overflow:hidden;
+transform-style:preserve-3d;
+transition:all .2s ease;
+will-change:transform;
+position:relative;
+overflow:hidden;
 }
 
 .card:hover{
-  box-shadow:0 25px 80px rgba(179,0,255,0.35);
+box-shadow:0 20px 80px rgba(168,85,247,.3);
 }
 
-.card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  padding:1px;
-  border-radius:16px;
+/* GLOW */
+.glow{
+position:absolute;
+width:400px;
+height:400px;
+background:rgba(168,85,247,0.2);
+filter:blur(120px);
+border-radius:50%;
+z-index:-1;
+}
 
-  background:linear-gradient(
-    45deg,
-    transparent,
-    rgba(168,85,247,0.8),
-    transparent
-  );
+/* BUTTON */
+.btn{
+transition:.3s ease;
+}
 
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-
-  -webkit-mask-composite:xor;
-  mask-composite:exclude;
+.btn:hover{
+transform:translateY(-5px) scale(1.05);
+box-shadow:0 0 40px rgba(168,85,247,.6);
 }
 
 /* SCROLLBAR */
 ::-webkit-scrollbar{
-  width:8px;
+width:8px;
 }
 
 ::-webkit-scrollbar-thumb{
-  background:#9333ea;
-  border-radius:20px;
+background:#9333ea;
+border-radius:20px;
+}
+
+/* TYPING */
+.typing{
+border-right:3px solid #a855f7;
+white-space:nowrap;
+overflow:hidden;
+animation:blink .8s infinite;
+}
+
+@keyframes blink{
+50%{
+border-color:transparent;
+}
+}
+
+/* SECTION ANIMATION */
+.reveal{
+opacity:0;
+transform:translateY(60px);
+transition:1s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
 }
 
 /* MOBILE */
-@media (max-width:768px){
+@media(max-width:768px){
 
-  body{
-    cursor:auto;
-  }
+body{
+cursor:auto;
+}
 
-  .cursor{
-    display:none;
-  }
+.cursor{
+display:none;
+}
 
 }
 
 </style>
-
 </head>
 
-<body class="text-white">
-
-<!-- LOADER -->
-<div id="loader"
-class="fixed inset-0 bg-black z-[99999] flex items-center justify-center">
-
-<h1 class="text-3xl md:text-5xl font-black hero-heading animate-pulse">
-  Loading Portfolio...
-</h1>
-
-</div>
+<body>
 
 <!-- CURSOR -->
 <div class="cursor" id="cursor"></div>
 
-<!-- BG GLOW -->
-<div class="glow top-20 left-10"></div>
-<div class="glow bottom-20 right-10"></div>
+<!-- BACKGROUND GLOW -->
+<div class="glow top-[-100px] left-[-100px]"></div>
+<div class="glow bottom-[-100px] right-[-100px]"></div>
+
+<!-- PARTICLES -->
+<div class="particle w-4 h-4 top-[10%] left-[20%]"></div>
+<div class="particle w-6 h-6 top-[60%] left-[80%]"></div>
+<div class="particle w-3 h-3 top-[40%] left-[50%]"></div>
+<div class="particle w-5 h-5 top-[80%] left-[10%]"></div>
 
 <!-- NAVBAR -->
-<nav class="flex flex-wrap justify-between items-center px-5 py-6 uppercase text-[#D7E2EA] gap-3">
+<nav class="fixed w-full top-0 z-50 px-8 py-5 flex justify-between items-center glass">
 
-<div class="font-bold text-purple-400 text-xl">
-  Portfolio
-</div>
+<h1 class="text-purple-400 font-black text-2xl">
+HOORAIN
+</h1>
 
-<div class="flex flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm md:text-base">
+<div class="hidden md:flex gap-8 uppercase text-sm">
 
-<a href="#about" class="hover:opacity-60 transition">
-  About
+<a href="#about" class="hover:text-purple-400 transition">
+About
 </a>
 
-<a href="#skills" class="hover:opacity-60 transition">
-  Skills
+<a href="#projects" class="hover:text-purple-400 transition">
+Projects
 </a>
 
-<a href="#projects" class="hover:opacity-60 transition">
-  Work
-</a>
-
-<a href="#contact" class="hover:opacity-60 transition">
-  Contact
+<a href="#contact" class="hover:text-purple-400 transition">
+Contact
 </a>
 
 </div>
@@ -178,42 +199,48 @@ class="fixed inset-0 bg-black z-[99999] flex items-center justify-center">
 </nav>
 
 <!-- HERO -->
-<section class="min-h-screen flex flex-col justify-center items-center text-center px-6 relative">
+<section class="min-h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden">
+
+<div
+class="absolute w-[500px] h-[500px] rounded-full bg-purple-500/20 blur-[120px] animate-pulse">
+</div>
 
 <img
 src="https://i.pinimg.com/736x/60/0f/15/600f15ee3e287003d876fcbaca009026.jpg"
-alt="Profile Image"
-class="w-32 h-32 md:w-40 md:h-40 rounded-full object-contain bg-[#16161d] border-4 border-purple-500 mb-6 shadow-2xl p-2"
+class="w-40 h-40 rounded-full border-4 border-purple-500 object-cover shadow-[0_0_50px_rgba(168,85,247,.6)] mb-8 z-10 floating"
 />
 
-<h2 class="text-[#D7E2EA] text-xl md:text-2xl uppercase tracking-widest">
-  Shehzadi Hoorain
+<h2 class="uppercase tracking-[8px] text-gray-400 z-10">
+Creative Portfolio
 </h2>
 
-<h1 class="hero-heading text-[11vw] md:text-[8vw] font-black uppercase leading-none mt-4">
-  Designer & Developer
+<h1 class="hero-text text-[15vw] md:text-[8vw] font-black leading-none z-10">
+SHEHZADI
 </h1>
 
-<p class="text-[#D7E2EA] max-w-xl mt-6 text-sm md:text-lg leading-relaxed">
-  I create modern graphic designs and high-performance websites with clean UI and strong branding.
+<h1 class="hero-text text-[12vw] md:text-[6vw] font-black leading-none z-10">
+HOORAIN
+</h1>
+
+<div class="mt-6 text-xl md:text-3xl text-purple-300 z-10 typing" id="typing">
+</div>
+
+<p class="max-w-2xl mt-8 text-gray-300 text-lg z-10">
+I create futuristic websites, luxury branding, and cinematic digital experiences that feel premium and unforgettable.
 </p>
 
-<div class="flex flex-wrap justify-center gap-4 mt-8">
+<div class="flex gap-5 mt-10 z-10 flex-wrap justify-center">
 
 <a href="#projects"
-class="px-8 py-3 bg-purple-600 rounded-full uppercase tracking-widest hover:scale-105 hover:shadow-[0_0_40px_rgba(168,85,247,0.7)] transition">
-
+class="btn px-8 py-4 bg-purple-600 rounded-full uppercase tracking-widest">
 View Work
-
 </a>
 
 <a
 href="https://www.fiverr.com/s/xXzj8E4"
 target="_blank"
-class="px-8 py-3 bg-purple-600 rounded-full uppercase tracking-widest hover:scale-105 hover:shadow-[0_0_40px_rgba(168,85,247,0.7)] transition inline-block">
-
+class="btn px-8 py-4 border border-purple-400 rounded-full uppercase tracking-widest">
 Hire Me
-
 </a>
 
 </div>
@@ -221,52 +248,67 @@ Hire Me
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="py-24 px-6 text-center">
+<section id="about" class="py-32 px-6 reveal">
 
-<h2 class="hero-heading text-5xl font-black uppercase">
-  About Me
+<div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+
+<div>
+
+<h2 class="hero-text text-6xl font-black uppercase">
+About Me
 </h2>
 
-<p class="text-[#D7E2EA] max-w-3xl mx-auto mt-8 leading-relaxed text-lg">
+<p class="text-gray-300 mt-8 leading-relaxed text-lg">
 
-I am a creative Graphic Designer and Web Developer who builds clean, modern, and impactful digital experiences.
-My focus is branding, UI/UX, and responsive web development that helps businesses grow online.
+I design futuristic brands and develop modern websites with premium UI/UX experiences. 
+My goal is to create designs that feel cinematic, elegant, and unforgettable.
 
-</p>
-
-</section>
-
-<!-- SKILLS -->
-<section id="skills"
-class="py-24 px-6 text-center bg-white text-black rounded-t-[40px]">
-
-<h2 class="text-5xl font-black uppercase mb-16">
-  Skills
-</h2>
-
-<div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-
-<div class="p-6 border rounded-xl hover:scale-105 transition">
-
-<h3 class="text-2xl font-bold">
-  🎨 Graphic Design
-</h3>
-
-<p class="text-sm opacity-70 mt-2">
-  Logos, branding, posters, social media designs
 </p>
 
 </div>
 
-<div class="p-6 border rounded-xl hover:scale-105 transition">
+<div class="glass rounded-3xl p-10 card">
 
-<h3 class="text-2xl font-bold">
-  💻 Web Development
+<h3 class="text-3xl font-bold text-purple-400">
+Skills
 </h3>
 
-<p class="text-sm opacity-70 mt-2">
-  Responsive websites, UI/UX, frontend development
-</p>
+<div class="mt-8 space-y-5">
+
+<div>
+<div class="flex justify-between">
+<span>Graphic Design</span>
+<span>95%</span>
+</div>
+
+<div class="w-full h-3 bg-white/10 rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-purple-500 w-[95%] rounded-full"></div>
+</div>
+</div>
+
+<div>
+<div class="flex justify-between">
+<span>Web Development</span>
+<span>90%</span>
+</div>
+
+<div class="w-full h-3 bg-white/10 rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-purple-500 w-[90%] rounded-full"></div>
+</div>
+</div>
+
+<div>
+<div class="flex justify-between">
+<span>UI/UX Design</span>
+<span>88%</span>
+</div>
+
+<div class="w-full h-3 bg-white/10 rounded-full mt-2 overflow-hidden">
+<div class="h-full bg-purple-500 w-[88%] rounded-full"></div>
+</div>
+</div>
+
+</div>
 
 </div>
 
@@ -275,70 +317,64 @@ class="py-24 px-6 text-center bg-white text-black rounded-t-[40px]">
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" class="py-24 px-6 text-center">
+<section id="projects" class="py-32 px-6 reveal">
 
-<h2 class="hero-heading text-5xl font-black uppercase mb-16">
-  Projects
+<h2 class="hero-text text-6xl font-black uppercase text-center mb-20">
+Projects
 </h2>
 
-<div class="grid md:grid-cols-3 gap-8">
+<div class="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto">
 
-<!-- BRANDING -->
-<div
-class="card bg-[#16161d] p-4 rounded-2xl cursor-pointer"
-onclick="openGallery('branding')">
+<!-- CARD -->
+<div class="glass rounded-3xl p-5 card">
 
 <img
 src="Poster.png"
-class="rounded-xl w-full h-[250px] object-cover"
+class="rounded-2xl h-[250px] w-full object-cover"
 />
 
-<h3 class="mt-4 font-semibold text-xl">
-  Posters & Branding
+<h3 class="text-2xl font-bold mt-6">
+Posters & Branding
 </h3>
 
-<p class="text-sm text-gray-400">
-  Creative poster designs & brand identity work
+<p class="text-gray-400 mt-3">
+Luxury posters, branding systems, social media creatives.
 </p>
 
 </div>
 
-<!-- WEB -->
-<div
-class="card bg-[#16161d] p-4 rounded-2xl cursor-pointer"
-onclick="openGallery('web')">
+<!-- CARD -->
+<div class="glass rounded-3xl p-5 card">
 
 <img
 src="Website1.png"
-class="rounded-xl w-full h-[250px] object-cover"
+class="rounded-2xl h-[250px] w-full object-cover"
 />
 
-<h3 class="mt-4 font-semibold text-xl">
-  Websites & UI Design
+<h3 class="text-2xl font-bold mt-6">
+3D Web Design
 </h3>
 
-<p class="text-sm text-gray-400">
-  Modern responsive website interfaces
+<p class="text-gray-400 mt-3">
+Responsive futuristic interfaces with premium animations.
 </p>
 
 </div>
 
-<!-- LOGO -->
-<div
-class="card bg-[#16161d] p-4 rounded-2xl cursor-pointer"
-onclick="openGallery('logo')">
+<!-- CARD -->
+<div class="glass rounded-3xl p-5 card">
 
 <img
 src="Logo1.png"
-class="rounded-xl w-full h-[250px] object-cover"
+class="rounded-2xl h-[250px] w-full object-cover"
 />
 
-<h3 class="mt-4 font-semibold text-xl">
-  Logo & Thank You Cards
+<h3 class="text-2xl font-bold mt-6">
+Luxury Branding
 </h3>
 
-<p class="text-sm text-gray-400">
-  Logo design + custom client appreciation cards
+<p class="text-gray-400 mt-3">
+Elegant logos and identity systems with cinematic presentation.
 </p>
 
 </div>
@@ -347,54 +383,21 @@ class="rounded-xl w-full h-[250px] object-cover"
 
 </section>
 
-<!-- POPUP GALLERY -->
-<div
-id="galleryModal"
-class="fixed inset-0 bg-black/90 hidden z-50 overflow-y-auto p-10">
-
-<div class="max-w-6xl mx-auto">
-
-<div class="flex justify-end mb-8">
-
-<button
-onclick="closeGallery()"
-class="text-white text-5xl hover:text-purple-400 transition">
-
-&times;
-
-</button>
-
-</div>
-
-<h2
-id="galleryTitle"
-class="text-4xl font-black uppercase mb-10 text-center hero-heading">
-</h2>
-
-<div
-id="galleryImages"
-class="grid md:grid-cols-3 gap-6">
-</div>
-
-</div>
-
-</div>
-
 <!-- CONTACT -->
-<section id="contact" class="py-24 text-center px-6">
+<section id="contact" class="py-32 text-center px-6 reveal">
 
-<h2 class="hero-heading text-5xl font-black uppercase">
-  Let’s Work Together
+<h2 class="hero-text text-6xl font-black uppercase">
+Let’s Create Something Amazing
 </h2>
 
-<p class="text-[#D7E2EA] mt-6 text-lg">
-  Ready to build something amazing?
+<p class="text-gray-400 mt-8 text-lg">
+Ready for a premium website or brand identity?
 </p>
 
 <a
 href="https://www.fiverr.com/s/xXzj8E4"
 target="_blank"
-class="mt-8 px-8 py-3 border border-white rounded-full uppercase hover:bg-white hover:text-black hover:scale-105 transition inline-block">
+class="btn inline-block mt-10 px-10 py-5 bg-purple-600 rounded-full uppercase tracking-widest">
 
 Contact Me
 
@@ -403,22 +406,11 @@ Contact Me
 </section>
 
 <!-- FOOTER -->
-<footer class="text-center py-10 text-gray-500">
-© 2026 Portfolio | Graphic Designer & Web Developer
+<footer class="text-center py-10 text-gray-500 border-t border-white/10">
+© 2026 Hoorain Portfolio
 </footer>
 
 <script>
-
-/* LOADER */
-window.addEventListener("load",()=>{
-
-setTimeout(()=>{
-
-document.getElementById("loader").style.display="none";
-
-},1200);
-
-});
 
 /* CURSOR */
 const cursor=document.getElementById("cursor");
@@ -429,6 +421,45 @@ cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 
 });
+
+/* TYPING EFFECT */
+const texts=[
+"Graphic Designer",
+"Web Developer",
+"UI/UX Designer",
+"Brand Creator"
+];
+
+let count=0;
+let index=0;
+let currentText="";
+let letter="";
+
+(function type(){
+
+if(count===texts.length){
+count=0;
+}
+
+currentText=texts[count];
+letter=currentText.slice(0,++index);
+
+document.getElementById("typing").textContent=letter;
+
+if(letter.length===currentText.length){
+
+count++;
+index=0;
+
+setTimeout(type,1500);
+
+}else{
+
+setTimeout(type,100);
+
+}
+
+})();
 
 /* 3D CARDS */
 const cards=document.querySelectorAll(".card");
@@ -442,116 +473,54 @@ const rect=card.getBoundingClientRect();
 const x=e.clientX-rect.left;
 const y=e.clientY-rect.top;
 
-const rotateX=((y-rect.height/2)/rect.height)*-12;
-const rotateY=((x-rect.width/2)/rect.width)*12;
+const rotateX=((y-rect.height/2)/rect.height)*-15;
+const rotateY=((x-rect.width/2)/rect.width)*15;
 
 card.style.transform=`
 perspective(1000px)
 rotateX(${rotateX}deg)
 rotateY(${rotateY}deg)
-scale(1.04)
+scale(1.03)
 `;
 
 });
 
 card.addEventListener("mouseleave",()=>{
 
-card.style.transform=
-"perspective(1000px) rotateX(0) rotateY(0) scale(1)";
-
-});
-
-});
-
-/* GALLERY */
-const galleries={
-
-branding:{
-title:"Posters & Branding",
-images:[
-"Poster.png",
-"Poster2.png",
-"Poster3.png"
-]
-},
-
-web:{
-title:"Websites & UI Design",
-images:[
-"Website1.png",
-"Website2.png",
-"Website3.png"
-]
-},
-
-logo:{
-title:"Logo & Thank You Cards",
-images:[
-"Logo1.png",
-"Logo2.png",
-"Logo3.png"
-]
-}
-
-};
-
-/* OPEN GALLERY */
-function openGallery(category){
-
-const modal=document.getElementById("galleryModal");
-const title=document.getElementById("galleryTitle");
-const imagesContainer=document.getElementById("galleryImages");
-
-title.innerText=galleries[category].title;
-
-imagesContainer.innerHTML="";
-
-galleries[category].images.forEach(img=>{
-
-imagesContainer.innerHTML+=`
-
-<div class="bg-[#16161d] p-3 rounded-2xl overflow-hidden shadow-2xl">
-
-<img
-src="${img}"
-class="rounded-xl w-full h-[250px] object-cover hover:scale-110 transition duration-500"
-/>
-
-</div>
-
+card.style.transform=`
+perspective(1000px)
+rotateX(0)
+rotateY(0)
+scale(1)
 `;
 
 });
 
-modal.classList.remove("hidden");
+});
 
-document.body.style.overflow="hidden";
+/* REVEAL ON SCROLL */
+function reveal(){
 
-}
+const reveals=document.querySelectorAll(".reveal");
 
-/* CLOSE GALLERY */
-function closeGallery(){
+reveals.forEach((element)=>{
 
-document
-.getElementById("galleryModal")
-.classList.add("hidden");
+const windowHeight=window.innerHeight;
+const elementTop=element.getBoundingClientRect().top;
 
-document.body.style.overflow="auto";
+if(elementTop<windowHeight-100){
 
-}
-
-/* CLOSE WHEN CLICK OUTSIDE */
-window.addEventListener("click",(e)=>{
-
-const modal=document.getElementById("galleryModal");
-
-if(e.target===modal){
-
-closeGallery();
+element.classList.add("active");
 
 }
 
 });
+
+}
+
+window.addEventListener("scroll",reveal);
+
+reveal();
 
 </script>
 
