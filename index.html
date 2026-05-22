@@ -1,528 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<title>Hoorain | 3D Portfolio</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Futuristic Portfolio</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
 
-html{
-scroll-behavior:smooth;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Orbitron', sans-serif;
 }
 
 body{
-margin:0;
-font-family:'Kanit',sans-serif;
-background:#050505;
-overflow-x:hidden;
-color:white;
-cursor:none;
+  background:#05010a;
+  overflow-x:hidden;
+  color:white;
 }
 
-/* CUSTOM CURSOR */
-.cursor{
-width:20px;
-height:20px;
-border-radius:50%;
-position:fixed;
-background:radial-gradient(circle,#a855f7,transparent);
-pointer-events:none;
-transform:translate(-50%,-50%);
-z-index:99999;
-mix-blend-mode:screen;
+/* Background Glow */
+.bg{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background: radial-gradient(circle at 20% 20%, #6a00ff33, transparent 40%),
+              radial-gradient(circle at 80% 80%, #00f7ff33, transparent 40%);
+  z-index:-1;
 }
 
-/* PARTICLES */
-.particle{
-position:absolute;
-border-radius:50%;
-background:rgba(168,85,247,0.15);
-filter:blur(2px);
-animation:float 10s infinite ease-in-out;
+/* Floating shapes */
+.shape{
+  position:absolute;
+  width:200px;
+  height:200px;
+  background:linear-gradient(45deg,#6a00ff,#00f7ff);
+  filter:blur(80px);
+  opacity:0.4;
+  animation:float 6s infinite ease-in-out;
 }
+
+.shape:nth-child(1){top:10%;left:10%;}
+.shape:nth-child(2){bottom:10%;right:10%;animation-delay:2s;}
 
 @keyframes float{
-0%,100%{
-transform:translateY(0px);
-}
-50%{
-transform:translateY(-40px);
-}
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-30px);}
 }
 
-/* HERO TEXT */
-.hero-text{
-background:linear-gradient(180deg,#ffffff,#8b8b8b);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+/* Hero Section */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
 }
 
-/* GLASS */
-.glass{
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,0.1);
-box-shadow:0 0 40px rgba(168,85,247,0.15);
+.hero h1{
+  font-size:3.5rem;
+  background:linear-gradient(90deg,#00f7ff,#6a00ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:glow 3s infinite alternate;
 }
 
-/* 3D CARD */
-.card{
-transform-style:preserve-3d;
-transition:all .2s ease;
-will-change:transform;
-position:relative;
-overflow:hidden;
+@keyframes glow{
+  from{filter:drop-shadow(0 0 10px #00f7ff);}
+  to{filter:drop-shadow(0 0 25px #6a00ff);}
 }
 
-.card:hover{
-box-shadow:0 20px 80px rgba(168,85,247,.3);
+.hero p{
+  margin-top:10px;
+  opacity:0.7;
 }
 
-/* GLOW */
-.glow{
-position:absolute;
-width:400px;
-height:400px;
-background:rgba(168,85,247,0.2);
-filter:blur(120px);
-border-radius:50%;
-z-index:-1;
-}
-
-/* BUTTON */
+/* Button */
 .btn{
-transition:.3s ease;
+  margin-top:20px;
+  padding:12px 25px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(90deg,#00f7ff,#6a00ff);
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+  box-shadow:0 0 20px #6a00ff55;
 }
 
 .btn:hover{
-transform:translateY(-5px) scale(1.05);
-box-shadow:0 0 40px rgba(168,85,247,.6);
+  transform:scale(1.1);
+  box-shadow:0 0 40px #00f7ff;
 }
 
-/* SCROLLBAR */
-::-webkit-scrollbar{
-width:8px;
+/* Cards */
+.section{
+  padding:80px 20px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:20px;
 }
 
-::-webkit-scrollbar-thumb{
-background:#9333ea;
-border-radius:20px;
+.card{
+  width:280px;
+  padding:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.1);
+  transition:0.4s;
+  transform-style:preserve-3d;
 }
 
-/* TYPING */
-.typing{
-border-right:3px solid #a855f7;
-white-space:nowrap;
-overflow:hidden;
-animation:blink .8s infinite;
+.card:hover{
+  transform:rotateY(10deg) rotateX(10deg) scale(1.05);
+  box-shadow:0 0 30px #00f7ff55;
 }
 
-@keyframes blink{
-50%{
-border-color:transparent;
-}
-}
-
-/* SECTION ANIMATION */
-.reveal{
-opacity:0;
-transform:translateY(60px);
-transition:1s ease;
+.card h3{
+  margin-bottom:10px;
+  color:#00f7ff;
 }
 
-.reveal.active{
-opacity:1;
-transform:translateY(0);
+/* Footer */
+footer{
+  text-align:center;
+  padding:40px;
+  opacity:0.5;
 }
-
-/* MOBILE */
-@media(max-width:768px){
-
-body{
-cursor:auto;
-}
-
-.cursor{
-display:none;
-}
-
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- CURSOR -->
-<div class="cursor" id="cursor"></div>
-
-<!-- BACKGROUND GLOW -->
-<div class="glow top-[-100px] left-[-100px]"></div>
-<div class="glow bottom-[-100px] right-[-100px]"></div>
-
-<!-- PARTICLES -->
-<div class="particle w-4 h-4 top-[10%] left-[20%]"></div>
-<div class="particle w-6 h-6 top-[60%] left-[80%]"></div>
-<div class="particle w-3 h-3 top-[40%] left-[50%]"></div>
-<div class="particle w-5 h-5 top-[80%] left-[10%]"></div>
-
-<!-- NAVBAR -->
-<nav class="fixed w-full top-0 z-50 px-8 py-5 flex justify-between items-center glass">
-
-<h1 class="text-purple-400 font-black text-2xl">
-HOORAIN
-</h1>
-
-<div class="hidden md:flex gap-8 uppercase text-sm">
-
-<a href="#about" class="hover:text-purple-400 transition">
-About
-</a>
-
-<a href="#projects" class="hover:text-purple-400 transition">
-Projects
-</a>
-
-<a href="#contact" class="hover:text-purple-400 transition">
-Contact
-</a>
-
-</div>
-
-</nav>
+<div class="bg"></div>
+<div class="shape"></div>
+<div class="shape"></div>
 
 <!-- HERO -->
-<section class="min-h-screen flex flex-col justify-center items-center text-center px-6 relative overflow-hidden">
+<section class="hero">
+  <h1>Hi, I'm Your Developer</h1>
+  <p>Creative Web Developer | Designer | 3D UI Creator</p>
+  <button class="btn">Explore My Work</button>
+</section>
 
-<div
-class="absolute w-[500px] h-[500px] rounded-full bg-purple-500/20 blur-[120px] animate-pulse">
-</div>
+<!-- CARDS -->
+<section class="section">
 
-<img
-src="https://i.pinimg.com/736x/60/0f/15/600f15ee3e287003d876fcbaca009026.jpg"
-class="w-40 h-40 rounded-full border-4 border-purple-500 object-cover shadow-[0_0_50px_rgba(168,85,247,.6)] mb-8 z-10 floating"
-/>
+  <div class="card">
+    <h3>Web Development</h3>
+    <p>Modern responsive websites with futuristic UI & animations.</p>
+  </div>
 
-<h2 class="uppercase tracking-[8px] text-gray-400 z-10">
-Creative Portfolio
-</h2>
+  <div class="card">
+    <h3>UI/UX Design</h3>
+    <p>Clean, luxury and high-conversion user interfaces.</p>
+  </div>
 
-<h1 class="hero-text text-[15vw] md:text-[8vw] font-black leading-none z-10">
-SHEHZADI
-</h1>
-
-<h1 class="hero-text text-[12vw] md:text-[6vw] font-black leading-none z-10">
-HOORAIN
-</h1>
-
-<div class="mt-6 text-xl md:text-3xl text-purple-300 z-10 typing" id="typing">
-</div>
-
-<p class="max-w-2xl mt-8 text-gray-300 text-lg z-10">
-I create futuristic websites, luxury branding, and cinematic digital experiences that feel premium and unforgettable.
-</p>
-
-<div class="flex gap-5 mt-10 z-10 flex-wrap justify-center">
-
-<a href="#projects"
-class="btn px-8 py-4 bg-purple-600 rounded-full uppercase tracking-widest">
-View Work
-</a>
-
-<a
-href="https://www.fiverr.com/s/xXzj8E4"
-target="_blank"
-class="btn px-8 py-4 border border-purple-400 rounded-full uppercase tracking-widest">
-Hire Me
-</a>
-
-</div>
+  <div class="card">
+    <h3>3D Effects</h3>
+    <p>Interactive hover-based 3D motion experience.</p>
+  </div>
 
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="py-32 px-6 reveal">
-
-<div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-
-<div>
-
-<h2 class="hero-text text-6xl font-black uppercase">
-About Me
-</h2>
-
-<p class="text-gray-300 mt-8 leading-relaxed text-lg">
-
-I design futuristic brands and develop modern websites with premium UI/UX experiences. 
-My goal is to create designs that feel cinematic, elegant, and unforgettable.
-
-</p>
-
-</div>
-
-<div class="glass rounded-3xl p-10 card">
-
-<h3 class="text-3xl font-bold text-purple-400">
-Skills
-</h3>
-
-<div class="mt-8 space-y-5">
-
-<div>
-<div class="flex justify-between">
-<span>Graphic Design</span>
-<span>95%</span>
-</div>
-
-<div class="w-full h-3 bg-white/10 rounded-full mt-2 overflow-hidden">
-<div class="h-full bg-purple-500 w-[95%] rounded-full"></div>
-</div>
-</div>
-
-<div>
-<div class="flex justify-between">
-<span>Web Development</span>
-<span>90%</span>
-</div>
-
-<div class="w-full h-3 bg-white/10 rounded-full mt-2 overflow-hidden">
-<div class="h-full bg-purple-500 w-[90%] rounded-full"></div>
-</div>
-</div>
-
-<div>
-<div class="flex justify-between">
-<span>UI/UX Design</span>
-<span>88%</span>
-</div>
-
-<div class="w-full h-3 bg-white/10 rounded-full mt-2 overflow-hidden">
-<div class="h-full bg-purple-500 w-[88%] rounded-full"></div>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="py-32 px-6 reveal">
-
-<h2 class="hero-text text-6xl font-black uppercase text-center mb-20">
-Projects
-</h2>
-
-<div class="grid md:grid-cols-3 gap-10 max-w-7xl mx-auto">
-
-<!-- CARD -->
-<div class="glass rounded-3xl p-5 card">
-
-<img
-src="Poster.png"
-class="rounded-2xl h-[250px] w-full object-cover"
-/>
-
-<h3 class="text-2xl font-bold mt-6">
-Posters & Branding
-</h3>
-
-<p class="text-gray-400 mt-3">
-Luxury posters, branding systems, social media creatives.
-</p>
-
-</div>
-
-<!-- CARD -->
-<div class="glass rounded-3xl p-5 card">
-
-<img
-src="Website1.png"
-class="rounded-2xl h-[250px] w-full object-cover"
-/>
-
-<h3 class="text-2xl font-bold mt-6">
-3D Web Design
-</h3>
-
-<p class="text-gray-400 mt-3">
-Responsive futuristic interfaces with premium animations.
-</p>
-
-</div>
-
-<!-- CARD -->
-<div class="glass rounded-3xl p-5 card">
-
-<img
-src="Logo1.png"
-class="rounded-2xl h-[250px] w-full object-cover"
-/>
-
-<h3 class="text-2xl font-bold mt-6">
-Luxury Branding
-</h3>
-
-<p class="text-gray-400 mt-3">
-Elegant logos and identity systems with cinematic presentation.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="py-32 text-center px-6 reveal">
-
-<h2 class="hero-text text-6xl font-black uppercase">
-Let’s Create Something Amazing
-</h2>
-
-<p class="text-gray-400 mt-8 text-lg">
-Ready for a premium website or brand identity?
-</p>
-
-<a
-href="https://www.fiverr.com/s/xXzj8E4"
-target="_blank"
-class="btn inline-block mt-10 px-10 py-5 bg-purple-600 rounded-full uppercase tracking-widest">
-
-Contact Me
-
-</a>
-
-</section>
-
-<!-- FOOTER -->
-<footer class="text-center py-10 text-gray-500 border-t border-white/10">
-© 2026 Hoorain Portfolio
+<footer>
+  © 2026 Your Name | Futuristic Portfolio
 </footer>
-
-<script>
-
-/* CURSOR */
-const cursor=document.getElementById("cursor");
-
-document.addEventListener("mousemove",(e)=>{
-
-cursor.style.left=e.clientX+"px";
-cursor.style.top=e.clientY+"px";
-
-});
-
-/* TYPING EFFECT */
-const texts=[
-"Graphic Designer",
-"Web Developer",
-"UI/UX Designer",
-"Brand Creator"
-];
-
-let count=0;
-let index=0;
-let currentText="";
-let letter="";
-
-(function type(){
-
-if(count===texts.length){
-count=0;
-}
-
-currentText=texts[count];
-letter=currentText.slice(0,++index);
-
-document.getElementById("typing").textContent=letter;
-
-if(letter.length===currentText.length){
-
-count++;
-index=0;
-
-setTimeout(type,1500);
-
-}else{
-
-setTimeout(type,100);
-
-}
-
-})();
-
-/* 3D CARDS */
-const cards=document.querySelectorAll(".card");
-
-cards.forEach(card=>{
-
-card.addEventListener("mousemove",(e)=>{
-
-const rect=card.getBoundingClientRect();
-
-const x=e.clientX-rect.left;
-const y=e.clientY-rect.top;
-
-const rotateX=((y-rect.height/2)/rect.height)*-15;
-const rotateY=((x-rect.width/2)/rect.width)*15;
-
-card.style.transform=`
-perspective(1000px)
-rotateX(${rotateX}deg)
-rotateY(${rotateY}deg)
-scale(1.03)
-`;
-
-});
-
-card.addEventListener("mouseleave",()=>{
-
-card.style.transform=`
-perspective(1000px)
-rotateX(0)
-rotateY(0)
-scale(1)
-`;
-
-});
-
-});
-
-/* REVEAL ON SCROLL */
-function reveal(){
-
-const reveals=document.querySelectorAll(".reveal");
-
-reveals.forEach((element)=>{
-
-const windowHeight=window.innerHeight;
-const elementTop=element.getBoundingClientRect().top;
-
-if(elementTop<windowHeight-100){
-
-element.classList.add("active");
-
-}
-
-});
-
-}
-
-window.addEventListener("scroll",reveal);
-
-reveal();
-
-</script>
 
 </body>
 </html>
