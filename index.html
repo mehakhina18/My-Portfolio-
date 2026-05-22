@@ -3,169 +3,228 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hoori Portfolio</title>
+<title>Shehzadi Hoorain Portfolio</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-  overflow:hidden;
-  background:black;
-  color:white;
+background:#05010a;
+color:white;
+overflow-x:hidden;
 }
 
-/* BACKGROUND */
-.bg{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background: radial-gradient(circle at 20% 20%, #00f7ff33, transparent 40%),
-              radial-gradient(circle at 80% 80%, #6a00ff33, transparent 40%);
-  animation:move 6s infinite alternate;
+/* HERO */
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+text-align:center;
+background: radial-gradient(circle at top, #2b0a3d, #05010a);
+position:relative;
 }
 
-@keyframes move{
-  from{transform:scale(1);}
-  to{transform:scale(1.2);}
+.hero h1{
+font-size:60px;
+letter-spacing:2px;
+animation: fadeUp 2s ease;
 }
 
-/* SCENES */
-.scene{
-  position:absolute;
-  width:100%;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  flex-direction:column;
-  opacity:0;
-  transform:translateY(40px);
-  transition:1s ease;
+.hero h2{
+font-weight:300;
+margin-top:10px;
+opacity:0.8;
+animation: fadeUp 2.5s ease;
 }
 
-.scene.active{
-  opacity:1;
-  transform:translateY(0);
+.glow{
+color:#ff4fd8;
+text-shadow:0 0 20px #ff4fd8;
 }
 
-/* TEXT */
-h1{
-  font-size:3rem;
-  background:linear-gradient(90deg,#00f7ff,#6a00ff);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+.scroll{
+position:absolute;
+bottom:20px;
+opacity:0.6;
 }
 
-p{
-  max-width:600px;
-  margin-top:15px;
-  opacity:0.8;
-  line-height:1.6;
+/* SECTION */
+section{
+padding:100px 10%;
 }
 
-/* CHARACTER */
-.character{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background:linear-gradient(45deg,#00f7ff,#6a00ff);
-  margin-bottom:20px;
-  animation:float 2s infinite ease-in-out;
-  box-shadow:0 0 30px #00f7ff;
+/* ABOUT */
+.about{
+display:flex;
+align-items:center;
+gap:50px;
+flex-wrap:wrap;
 }
 
-@keyframes float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-10px);}
+.about img{
+width:300px;
+height:300px;
+object-fit:cover;
+border-radius:20px;
+border:3px solid #ff4fd8;
+box-shadow:0 0 30px #ff4fd8;
+transform:scale(0.9);
+opacity:0;
+transition:all 1s ease;
 }
 
-/* BUTTON */
-.btn{
-  margin-top:20px;
-  padding:12px 22px;
-  border:none;
-  border-radius:30px;
-  background:linear-gradient(90deg,#00f7ff,#6a00ff);
-  color:white;
-  cursor:pointer;
+.about-text{
+flex:1;
+min-width:250px;
+transform:translateX(50px);
+opacity:0;
+transition:all 1s ease;
+}
+
+.about-text h2{
+font-size:40px;
+margin-bottom:10px;
+}
+
+.about-text p{
+opacity:0.8;
+line-height:1.8;
+}
+
+/* PROJECTS */
+.projects{
+text-align:center;
+}
+
+.projects h2{
+font-size:40px;
+margin-bottom:50px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+padding:20px;
+border-radius:15px;
+border:1px solid rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+transform:translateY(40px);
+opacity:0;
+transition:all 0.8s ease;
+}
+
+.card:hover{
+transform:scale(1.05);
+border-color:#ff4fd8;
+box-shadow:0 0 20px #ff4fd8;
+}
+
+.category{
+display:inline-block;
+padding:5px 10px;
+background:#ff4fd8;
+color:black;
+font-size:12px;
+border-radius:20px;
+margin-bottom:10px;
+}
+
+/* ANIMATION */
+.show{
+opacity:1 !important;
+transform:translate(0,0) scale(1) !important;
+}
+
+@keyframes fadeUp{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* MOBILE */
+@media(max-width:768px){
+.hero h1{font-size:40px;}
+.about{flex-direction:column;text-align:center;}
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg"></div>
-
-<!-- SCENE 1 -->
-<div class="scene active" id="s1">
-  <h1>Welcome to Hoori Portfolio</h1>
-  <p>A creative digital universe built with imagination, design & code.</p>
-  <button class="btn" onclick="next()">Start Experience</button>
+<!-- HERO -->
+<div class="hero">
+<h1>Welcome to <span class="glow">Shehzadi Hoorain</span></h1>
+<h2>A Professional Portfolio Experience</h2>
+<div class="scroll">⬇ Scroll Down</div>
 </div>
 
-<!-- SCENE 2 -->
-<div class="scene" id="s2">
-  <div class="character"></div>
+<!-- ABOUT -->
+<section class="about">
+<img src="https://i.imgur.com/yourimage.jpg" alt="profile">
 
-  <h1>Shehzadi Hoorain</h1>
-  <p id="typing"></p>
+<div class="about-text">
+<h2>About Me</h2>
+<p>
+Hi, I am <b>Shehzadi Hoorain</b>. I am a creative web developer and designer who builds modern,
+interactive and luxury-style websites. I specialize in UI/UX design, frontend development
+and visually stunning digital experiences.
+</p>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects">
+<h2>My Projects</h2>
+
+<div class="cards">
+
+<div class="card">
+<div class="category">Custom Design</div>
+<h3>Luxury Portfolio Website</h3>
+<p>A high-end animated portfolio with scroll effects and glass UI.</p>
 </div>
 
-<!-- SCENE 3 -->
-<div class="scene" id="s3">
-  <h1>What I Do</h1>
-  <p>
-    I am a Graphic Designer & Web Developer.<br><br>
-    I create modern UI designs, brand identities, and futuristic websites
-    that feel alive and interactive.
-  </p>
+<div class="card">
+<div class="category">Business</div>
+<h3>Restaurant Website</h3>
+<p>Modern food ordering and branding website with smooth UX.</p>
 </div>
+
+<div class="card">
+<div class="category">E-Commerce</div>
+<h3>Online Store UI</h3>
+<p>Clean shopping interface with product filtering and cart design.</p>
+</div>
+
+</div>
+</section>
 
 <script>
+// scroll animation
+const elements = document.querySelectorAll('.about img, .about-text, .card');
 
-let scenes = ["s1","s2","s3"];
-let index = 0;
-
-function showScene(i){
-  scenes.forEach(id=>{
-    document.getElementById(id).classList.remove("active");
-  });
-  document.getElementById(scenes[i]).classList.add("active");
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('show');
 }
+});
+},{threshold:0.2});
 
-/* NEXT BUTTON FLOW */
-function next(){
-  index++;
-  if(index < scenes.length){
-    showScene(index);
-    if(index === 1) startTyping();
-  }
-}
-
-/* TYPING ANIMATION (CHARACTER SPEAKING FEEL) */
-let text = "Hey! I am Shehzadi Hoorain 👋 I design beautiful digital experiences that speak creativity and innovation.";
-let i = 0;
-
-function startTyping(){
-  let el = document.getElementById("typing");
-  el.innerHTML = "";
-
-  let interval = setInterval(()=>{
-    el.innerHTML += text[i];
-    i++;
-
-    if(i >= text.length){
-      clearInterval(interval);
-    }
-  },40);
-}
-
+elements.forEach(el=>observer.observe(el));
 </script>
 
 </body>
