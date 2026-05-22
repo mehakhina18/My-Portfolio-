@@ -2,190 +2,170 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Final Universe Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoori Portfolio</title>
+
 <style>
-body { margin:0; overflow:hidden; background:black; font-family:Arial; }
-#ui{
-  position:fixed;
-  top:20px;
-  left:20px;
-  width:280px;
-  padding:15px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid #00f7ff33;
-  backdrop-filter:blur(10px);
-  color:#00f7ff;
-  border-radius:12px;
-  z-index:10;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial;
 }
-#msg{font-size:13px; opacity:0.8; margin-top:10px;}
-a{
-  display:block;
-  margin-top:10px;
-  padding:10px;
-  text-align:center;
-  text-decoration:none;
+
+body{
+  overflow:hidden;
+  background:black;
   color:white;
+}
+
+/* BACKGROUND */
+.bg{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background: radial-gradient(circle at 20% 20%, #00f7ff33, transparent 40%),
+              radial-gradient(circle at 80% 80%, #6a00ff33, transparent 40%);
+  animation:move 6s infinite alternate;
+}
+
+@keyframes move{
+  from{transform:scale(1);}
+  to{transform:scale(1.2);}
+}
+
+/* SCENES */
+.scene{
+  position:absolute;
+  width:100%;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  flex-direction:column;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+
+.scene.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* TEXT */
+h1{
+  font-size:3rem;
   background:linear-gradient(90deg,#00f7ff,#6a00ff);
-  border-radius:8px;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+p{
+  max-width:600px;
+  margin-top:15px;
+  opacity:0.8;
+  line-height:1.6;
+}
+
+/* CHARACTER */
+.character{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  background:linear-gradient(45deg,#00f7ff,#6a00ff);
+  margin-bottom:20px;
+  animation:float 2s infinite ease-in-out;
+  box-shadow:0 0 30px #00f7ff;
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+}
+
+/* BUTTON */
+.btn{
+  margin-top:20px;
+  padding:12px 22px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(90deg,#00f7ff,#6a00ff);
+  color:white;
+  cursor:pointer;
 }
 </style>
 </head>
+
 <body>
 
-<div id="ui">
-  <h3>🌌 FINAL UNIVERSE CORE</h3>
-  <div id="msg">Booting universe...</div>
+<div class="bg"></div>
 
-  <a href="https://www.fiverr.com/s/GzDGYy2" target="_blank">Fiverr Portal</a>
-  <a href="https://wa.me/923152950176" target="_blank">WhatsApp Rift</a>
+<!-- SCENE 1 -->
+<div class="scene active" id="s1">
+  <h1>Welcome to Hoori Portfolio</h1>
+  <p>A creative digital universe built with imagination, design & code.</p>
+  <button class="btn" onclick="next()">Start Experience</button>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<!-- SCENE 2 -->
+<div class="scene" id="s2">
+  <div class="character"></div>
+
+  <h1>Shehzadi Hoorain</h1>
+  <p id="typing"></p>
+</div>
+
+<!-- SCENE 3 -->
+<div class="scene" id="s3">
+  <h1>What I Do</h1>
+  <p>
+    I am a Graphic Designer & Web Developer.<br><br>
+    I create modern UI designs, brand identities, and futuristic websites
+    that feel alive and interactive.
+  </p>
+</div>
 
 <script>
-/* =========================
-   BASIC SCENE
-========================= */
-const scene = new THREE.Scene();
-scene.fog = new THREE.Fog(0x000000, 10, 60);
 
-const camera = new THREE.PerspectiveCamera(
-  75,
-  window.innerWidth/window.innerHeight,
-  0.1,
-  1000
-);
+let scenes = ["s1","s2","s3"];
+let index = 0;
 
-const renderer = new THREE.WebGLRenderer({antialias:true});
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
-
-/* CAMERA POSITION */
-camera.position.z = 20;
-
-/* =========================
-   STARS (UNIVERSE)
-========================= */
-function createStars(){
-  const geometry = new THREE.BufferGeometry();
-  const vertices = [];
-
-  for(let i=0;i<2000;i++){
-    vertices.push(
-      (Math.random()-0.5)*200,
-      (Math.random()-0.5)*200,
-      (Math.random()-0.5)*200
-    );
-  }
-
-  geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices,3));
-
-  const material = new THREE.PointsMaterial({
-    color:0x00f7ff,
-    size:0.2
+function showScene(i){
+  scenes.forEach(id=>{
+    document.getElementById(id).classList.remove("active");
   });
-
-  const stars = new THREE.Points(geometry, material);
-  scene.add(stars);
-}
-createStars();
-
-/* =========================
-   PLANETS (PORTALS)
-========================= */
-function planet(color, x, name){
-  const geo = new THREE.SphereGeometry(2,32,32);
-  const mat = new THREE.MeshBasicMaterial({color:color});
-  const mesh = new THREE.Mesh(geo,mat);
-
-  mesh.position.x = x;
-  mesh.userData = {name:name};
-
-  scene.add(mesh);
-  return mesh;
+  document.getElementById(scenes[i]).classList.add("active");
 }
 
-const aboutPlanet = planet(0x00f7ff,-8,"ABOUT");
-const projectPlanet = planet(0x6a00ff,0,"PROJECTS");
-const contactPlanet = planet(0xff00ff,8,"CONTACT");
-
-/* =========================
-   LIGHT
-========================= */
-const light = new THREE.PointLight(0xffffff,1);
-light.position.set(10,10,10);
-scene.add(light);
-
-/* =========================
-   MOUSE INTERACTION
-========================= */
-let mouseX = 0;
-let mouseY = 0;
-
-document.addEventListener("mousemove",(e)=>{
-  mouseX = (e.clientX/window.innerWidth - 0.5)*2;
-  mouseY = (e.clientY/window.innerHeight - 0.5)*2;
-});
-
-/* =========================
-   AI MESSAGE SYSTEM
-========================= */
-let messages = [
-  "Identity: Shehzadi Hoorain loaded",
-  "System: Creative brain online",
-  "Status: Client-ready universe active",
-  "Warning: High imagination detected"
-];
-
-let i=0;
-setInterval(()=>{
-  document.getElementById("msg").innerText = messages[i];
-  i = (i+1)%messages.length;
-},2500);
-
-/* =========================
-   ANIMATION LOOP
-========================= */
-function animate(){
-  requestAnimationFrame(animate);
-
-  /* camera movement */
-  camera.position.x += (mouseX*5 - camera.position.x)*0.05;
-  camera.position.y += (-mouseY*5 - camera.position.y)*0.05;
-  camera.lookAt(scene.position);
-
-  /* rotate planets */
-  aboutPlanet.rotation.y += 0.01;
-  projectPlanet.rotation.y += 0.01;
-  contactPlanet.rotation.y += 0.01;
-
-  renderer.render(scene,camera);
-}
-
-animate();
-
-/* =========================
-   CLICK INTERACTION
-========================= */
-window.addEventListener("click",(e)=>{
-  const raycaster = new THREE.Raycaster();
-  const mouse = new THREE.Vector2();
-
-  mouse.x = (e.clientX/window.innerWidth)*2-1;
-  mouse.y = -(e.clientY/window.innerHeight)*2+1;
-
-  raycaster.setFromCamera(mouse,camera);
-
-  const objects = [aboutPlanet, projectPlanet, contactPlanet];
-  const intersects = raycaster.intersectObjects(objects);
-
-  if(intersects.length>0){
-    const name = intersects[0].object.userData.name;
-    document.getElementById("msg").innerText =
-      "PORTAL OPENED: " + name;
+/* NEXT BUTTON FLOW */
+function next(){
+  index++;
+  if(index < scenes.length){
+    showScene(index);
+    if(index === 1) startTyping();
   }
-});
+}
+
+/* TYPING ANIMATION (CHARACTER SPEAKING FEEL) */
+let text = "Hey! I am Shehzadi Hoorain 👋 I design beautiful digital experiences that speak creativity and innovation.";
+let i = 0;
+
+function startTyping(){
+  let el = document.getElementById("typing");
+  el.innerHTML = "";
+
+  let interval = setInterval(()=>{
+    el.innerHTML += text[i];
+    i++;
+
+    if(i >= text.length){
+      clearInterval(interval);
+    }
+  },40);
+}
+
 </script>
 
 </body>
