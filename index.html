@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Shehzadi Hoorain Portfolio</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
+scroll-behavior:smooth;
 font-family:'Poppins',sans-serif;
 }
 
@@ -21,218 +23,479 @@ color:white;
 overflow-x:hidden;
 }
 
-/* HERO */
-.hero{
-height:100vh;
+/* NAVBAR */
+
+nav{
+width:100%;
+padding:20px 8%;
 display:flex;
+justify-content:space-between;
 align-items:center;
-justify-content:center;
-flex-direction:column;
-text-align:center;
-background: radial-gradient(circle at top, #2b0a3d, #05010a);
-position:relative;
+position:fixed;
+top:0;
+left:0;
+z-index:1000;
+backdrop-filter:blur(10px);
+background:rgba(0,0,0,0.3);
+border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
-.hero h1{
-font-size:60px;
-letter-spacing:2px;
-animation: fadeUp 2s ease;
-}
-
-.hero h2{
-font-weight:300;
-margin-top:10px;
-opacity:0.8;
-animation: fadeUp 2.5s ease;
-}
-
-.glow{
+.logo{
+font-size:28px;
+font-weight:700;
 color:#ff4fd8;
-text-shadow:0 0 20px #ff4fd8;
 }
 
-.scroll{
-position:absolute;
-bottom:20px;
-opacity:0.6;
-}
-
-/* SECTION */
-section{
-padding:100px 10%;
-}
-
-/* ABOUT */
-.about{
+nav ul{
 display:flex;
+gap:40px;
+list-style:none;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-size:15px;
+transition:0.3s;
+}
+
+nav ul li a:hover{
+color:#ff4fd8;
+}
+
+.hire-btn{
+padding:12px 28px;
+border-radius:50px;
+border:none;
+background:linear-gradient(90deg,#ff4fd8,#b300ff);
+color:white;
+font-weight:600;
+cursor:pointer;
+box-shadow:0 0 20px #ff4fd8;
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:center;
 align-items:center;
-gap:50px;
+padding:120px 8%;
+gap:80px;
+flex-wrap:wrap;
+background:
+radial-gradient(circle at top,#2a0837 0%,#05010a 60%);
+}
+
+.hero-image{
+flex:1;
+display:flex;
+justify-content:center;
+}
+
+.hero-image img{
+width:100%;
+max-width:420px;
+border-radius:30px;
+border:3px solid #ff4fd8;
+box-shadow:0 0 40px #ff4fd8;
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-15px);}
+100%{transform:translateY(0px);}
+}
+
+.hero-text{
+flex:1;
+min-width:300px;
+}
+
+.hero-text h3{
+font-size:20px;
+font-weight:400;
+margin-bottom:10px;
+color:#ff4fd8;
+}
+
+.hero-text h1{
+font-size:65px;
+line-height:1.1;
+margin-bottom:20px;
+}
+
+.hero-text p{
+font-size:16px;
+line-height:1.9;
+opacity:0.8;
+margin-bottom:30px;
+}
+
+.stats{
+display:flex;
+gap:40px;
+margin-top:40px;
 flex-wrap:wrap;
 }
 
-.about img{
-width:100%;
-max-width:320px;
-height:auto;
-object-fit:contain;
-border-radius:20px;
-border:3px solid #ff4fd8;
-box-shadow:0 0 30px #ff4fd8;
-transform:scale(0.9);
-opacity:0;
-transition:all 1s ease;
-background:#111;
-padding:10px;
-}
-  
-.about-text{
-flex:1;
-min-width:250px;
-transform:translateX(50px);
-opacity:0;
-transition:all 1s ease;
+.stat-box h2{
+font-size:28px;
+color:#ff4fd8;
 }
 
-.about-text h2{
-font-size:40px;
-margin-bottom:10px;
-}
-
-.about-text p{
-opacity:0.8;
-line-height:1.8;
+.stat-box p{
+font-size:14px;
+opacity:0.7;
 }
 
 /* PROJECTS */
+
 .projects{
+padding:120px 8%;
+}
+
+.section-title{
+font-size:50px;
+margin-bottom:60px;
 text-align:center;
 }
 
-.projects h2{
-font-size:40px;
-margin-bottom:50px;
-}
-
-.cards{
+.project-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
 }
 
-.card{
-background:rgba(255,255,255,0.05);
-padding:20px;
-border-radius:15px;
+.project-card{
+background:rgba(255,255,255,0.04);
 border:1px solid rgba(255,255,255,0.1);
+border-radius:25px;
+overflow:hidden;
+transition:0.4s;
+position:relative;
 backdrop-filter:blur(10px);
-transform:translateY(40px);
-opacity:0;
-transition:all 0.8s ease;
 }
 
-.card:hover{
-transform:scale(1.05);
+.project-card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 25px #ff4fd8;
 border-color:#ff4fd8;
-box-shadow:0 0 20px #ff4fd8;
+}
+
+.project-card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.project-content{
+padding:25px;
 }
 
 .category{
 display:inline-block;
-padding:5px 10px;
+padding:6px 14px;
+border-radius:30px;
 background:#ff4fd8;
 color:black;
 font-size:12px;
-border-radius:20px;
+font-weight:600;
+margin-bottom:15px;
+}
+
+.project-content h3{
+font-size:24px;
 margin-bottom:10px;
 }
 
-/* ANIMATION */
-.show{
-opacity:1 !important;
-transform:translate(0,0) scale(1) !important;
+.project-content p{
+opacity:0.7;
+line-height:1.7;
+margin-bottom:20px;
 }
 
-@keyframes fadeUp{
-from{opacity:0; transform:translateY(30px);}
-to{opacity:1; transform:translateY(0);}
+.project-btn{
+display:inline-block;
+padding:12px 25px;
+border-radius:40px;
+text-decoration:none;
+background:transparent;
+border:1px solid #ff4fd8;
+color:#ff4fd8;
+transition:0.3s;
+}
+
+.project-btn:hover{
+background:#ff4fd8;
+color:black;
+}
+
+/* CONTACT */
+
+.contact{
+padding:100px 8%;
+}
+
+.contact-box{
+background:linear-gradient(90deg,#1a001f,#2d0034);
+padding:60px;
+border-radius:30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:30px;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.contact-box h2{
+font-size:40px;
+}
+
+.contact-box button{
+padding:18px 40px;
+border:none;
+border-radius:50px;
+font-size:18px;
+font-weight:600;
+background:linear-gradient(90deg,#ff4fd8,#b300ff);
+color:white;
+cursor:pointer;
+box-shadow:0 0 20px #ff4fd8;
 }
 
 /* MOBILE */
-@media(max-width:768px){
-.hero h1{font-size:40px;}
-.about{flex-direction:column;text-align:center;}
+
+@media(max-width:900px){
+
+.hero{
+text-align:center;
+padding-top:150px;
 }
+
+.hero-text h1{
+font-size:45px;
+}
+
+.stats{
+justify-content:center;
+}
+
+nav{
+padding:20px 5%;
+}
+
+nav ul{
+display:none;
+}
+
+.section-title{
+font-size:38px;
+}
+
+.contact-box{
+text-align:center;
+justify-content:center;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<div class="hero">
-<h1>I am <span class="glow">Shehzadi Hoorain</span></h1>
-<h2>A Professional Portfolio Experience</h2>
-<div class="scroll">⬇ Scroll Down</div>
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">
+SHEHZADI HOORAIN
 </div>
 
-<!-- ABOUT -->
-<section class="about">
-<img src="image.png" alt="Shehzadi Hoorain">
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Projects</a></li>
+<li><a href="#">Skills</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
 
-<div class="about-text">
-<h2>About Me</h2>
+<button class="hire-btn">
+Hire Me
+</button>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-image">
+<img src="image.png" alt="">
+</div>
+
+<div class="hero-text">
+
+<h3>ABOUT ME</h3>
+
+<h1>
+I'm <span style="color:#ff4fd8;">SHEHZADI HOORAIN</span>
+</h1>
 
 <p>
-Hi, I’m <b>Shehzadi Hoorain</b> — a passionate Graphic Designer and Web Developer with over 
-2 years of professional experience in creating visually stunning and modern digital experiences.
-I specialize in luxury-style websites, creative branding, UI/UX design, and interactive frontend development.
-My goal is to transform ideas into powerful, elegant, and high-performing designs that leave a lasting impression.
+I’m a passionate and creative Graphic Designer and Web Developer
+with 2 years of experience. I specialize in creating visually
+stunning designs and modern websites that help brands stand out.
 </p>
 
+<button class="hire-btn">
+Download CV
+</button>
+
+<div class="stats">
+
+<div class="stat-box">
+<h2>2+</h2>
+<p>Years Experience</p>
 </div>
-  
+
+<div class="stat-box">
+<h2>50+</h2>
+<p>Projects Completed</p>
+</div>
+
+<div class="stat-box">
+<h2>100%</h2>
+<p>Client Satisfaction</p>
+</div>
+
+<div class="stat-box">
+<h2>24/7</h2>
+<p>Support</p>
+</div>
+
+</div>
+
+</div>
+
 </section>
 
 <!-- PROJECTS -->
+
 <section class="projects">
-<h2>My Projects</h2>
 
-<div class="cards">
+<h1 class="section-title">
+MY PROJECTS
+</h1>
 
-<div class="card">
-<div class="category">Custom Design</div>
-<h3>Luxury Portfolio Website</h3>
-<p>A high-end animated portfolio with scroll effects and glass UI.</p>
+<div class="project-grid">
+
+<!-- CARD 1 -->
+
+<div class="project-card">
+
+<img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop">
+
+<div class="project-content">
+
+<div class="category">
+WEB DESIGN
 </div>
 
-<div class="card">
-<div class="category">Business</div>
-<h3>Restaurant Website</h3>
-<p>Modern food ordering and branding website with smooth UX.</p>
-</div>
+<h3>Luxury Portfolio</h3>
 
-<div class="card">
-<div class="category">E-Commerce</div>
-<h3>Online Store UI</h3>
-<p>Clean shopping interface with product filtering and cart design.</p>
-</div>
+<p>
+A premium animated portfolio website with futuristic UI and smooth transitions.
+</p>
+
+<a href="#" class="project-btn">
+View Project
+</a>
 
 </div>
+
+</div>
+
+<!-- CARD 2 -->
+
+<div class="project-card">
+
+<img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?q=80&w=1200&auto=format&fit=crop">
+
+<div class="project-content">
+
+<div class="category">
+E-COMMERCE
+</div>
+
+<h3>Fashion Store</h3>
+
+<p>
+A stylish fashion website with modern shopping experience and luxury aesthetics.
+</p>
+
+<a href="#" class="project-btn">
+View Project
+</a>
+
+</div>
+
+</div>
+
+<!-- CARD 3 -->
+
+<div class="project-card">
+
+<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop">
+
+<div class="project-content">
+
+<div class="category">
+UI/UX DESIGN
+</div>
+
+<h3>Business Dashboard</h3>
+
+<p>
+Interactive admin dashboard with analytics, charts and premium user experience.
+</p>
+
+<a href="#" class="project-btn">
+View Project
+</a>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<script>
-// scroll animation
-const elements = document.querySelectorAll('.about img, .about-text, .card');
+<!-- CONTACT -->
 
-const observer = new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add('show');
-}
-});
-},{threshold:0.2});
+<section class="contact">
 
-elements.forEach(el=>observer.observe(el));
-</script>
+<div class="contact-box">
+
+<div>
+<h2>Have a Project in Mind?</h2>
+<p style="opacity:0.7;margin-top:10px;">
+Let’s work together and create something amazing.
+</p>
+</div>
+
+<button>
+Let's Talk
+</button>
+
+</div>
+
+</section>
 
 </body>
 </html>
