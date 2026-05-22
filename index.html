@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 <title>Portfolio | Designer & Developer</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
@@ -10,6 +13,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
+
+/* SMOOTH SCROLL */
+html{
+  scroll-behavior:smooth;
+}
 
 body{
   margin:0;
@@ -50,19 +58,58 @@ body{
 }
 
 @keyframes float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-40px);}
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-40px);
+  }
 }
 
 /* CARDS */
 .card{
   transform-style:preserve-3d;
-  transition:transform .2s ease,box-shadow .3s ease;
+  transition:transform .2s ease, box-shadow .3s ease;
   will-change:transform;
+  position:relative;
+  overflow:hidden;
 }
 
 .card:hover{
   box-shadow:0 25px 80px rgba(179,0,255,0.35);
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  padding:1px;
+  border-radius:16px;
+
+  background:linear-gradient(
+    45deg,
+    transparent,
+    rgba(168,85,247,0.8),
+    transparent
+  );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{
+  width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#9333ea;
+  border-radius:20px;
 }
 
 /* MOBILE */
@@ -79,78 +126,95 @@ body{
 }
 
 </style>
+
 </head>
 
 <body class="text-white">
 
+<!-- LOADER -->
+<div id="loader"
+class="fixed inset-0 bg-black z-[99999] flex items-center justify-center">
+
+<h1 class="text-3xl md:text-5xl font-black hero-heading animate-pulse">
+  Loading Portfolio...
+</h1>
+
+</div>
+
+<!-- CURSOR -->
 <div class="cursor" id="cursor"></div>
 
 <!-- BG GLOW -->
 <div class="glow top-20 left-10"></div>
 <div class="glow bottom-20 right-10"></div>
 
-<!-- NAV -->
+<!-- NAVBAR -->
 <nav class="flex flex-wrap justify-between items-center px-5 py-6 uppercase text-[#D7E2EA] gap-3">
 
-  <div class="font-bold text-purple-400">
-    Portfolio
-  </div>
+<div class="font-bold text-purple-400 text-xl">
+  Portfolio
+</div>
 
-  <div class="flex flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm md:text-base">
+<div class="flex flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm md:text-base">
 
-    <a href="#about" class="hover:opacity-60">
-      About
-    </a>
+<a href="#about" class="hover:opacity-60 transition">
+  About
+</a>
 
-    <a href="#skills" class="hover:opacity-60">
-      Skills
-    </a>
+<a href="#skills" class="hover:opacity-60 transition">
+  Skills
+</a>
 
-    <a href="#projects" class="hover:opacity-60">
-      Work
-    </a>
+<a href="#projects" class="hover:opacity-60 transition">
+  Work
+</a>
 
-    <a href="#contact" class="hover:opacity-60">
-      Contact
-    </a>
+<a href="#contact" class="hover:opacity-60 transition">
+  Contact
+</a>
 
-  </div>
+</div>
 
 </nav>
 
 <!-- HERO -->
-<section class="h-screen flex flex-col justify-center items-center text-center px-6 relative">
+<section class="min-h-screen flex flex-col justify-center items-center text-center px-6 relative">
 
-<img 
+<img
 src="https://i.pinimg.com/736x/60/0f/15/600f15ee3e287003d876fcbaca009026.jpg"
 alt="Profile Image"
-class="w-32 h-32 md:w-40 md:h-40 rounded-full object-contain bg-[#16161d] border-4 border-purple-500 mb-6 shadow-lg p-2"
+class="w-32 h-32 md:w-40 md:h-40 rounded-full object-contain bg-[#16161d] border-4 border-purple-500 mb-6 shadow-2xl p-2"
 />
 
 <h2 class="text-[#D7E2EA] text-xl md:text-2xl uppercase tracking-widest">
   Shehzadi Hoorain
 </h2>
 
-<h1 class="hero-heading text-[10vw] md:text-[8vw] font-black uppercase leading-none mt-4">
+<h1 class="hero-heading text-[11vw] md:text-[8vw] font-black uppercase leading-none mt-4">
   Designer & Developer
 </h1>
 
-<p class="text-[#D7E2EA] max-w-xl mt-6 text-sm md:text-lg">
+<p class="text-[#D7E2EA] max-w-xl mt-6 text-sm md:text-lg leading-relaxed">
   I create modern graphic designs and high-performance websites with clean UI and strong branding.
 </p>
 
-<div class="flex gap-4 mt-8">
+<div class="flex flex-wrap justify-center gap-4 mt-8">
 
-  <a class="px-8 py-3 bg-purple-600 rounded-full uppercase tracking-widest hover:scale-105 transition">
-    View Work
-  </a>
+<a href="#projects"
+class="px-8 py-3 bg-purple-600 rounded-full uppercase tracking-widest hover:scale-105 hover:shadow-[0_0_40px_rgba(168,85,247,0.7)] transition">
 
-  <a 
-  href="https://www.fiverr.com/s/xXzj8E4"
-  target="_blank"
-  class="px-8 py-3 bg-purple-600 rounded-full uppercase tracking-widest hover:scale-105 transition inline-block">
-    Hire Me
-  </a>
+View Work
+
+</a>
+
+<a
+href="https://www.fiverr.com/s/xXzj8E4"
+target="_blank"
+class="px-8 py-3 bg-purple-600 rounded-full uppercase tracking-widest hover:scale-105 hover:shadow-[0_0_40px_rgba(168,85,247,0.7)] transition inline-block">
+
+Hire Me
+
+</a>
 
 </div>
 
@@ -163,7 +227,7 @@ class="w-32 h-32 md:w-40 md:h-40 rounded-full object-contain bg-[#16161d] border
   About Me
 </h2>
 
-<p class="text-[#D7E2EA] max-w-3xl mx-auto mt-8 leading-relaxed">
+<p class="text-[#D7E2EA] max-w-3xl mx-auto mt-8 leading-relaxed text-lg">
 
 I am a creative Graphic Designer and Web Developer who builds clean, modern, and impactful digital experiences.
 My focus is branding, UI/UX, and responsive web development that helps businesses grow online.
@@ -173,7 +237,8 @@ My focus is branding, UI/UX, and responsive web development that helps businesse
 </section>
 
 <!-- SKILLS -->
-<section id="skills" class="py-24 px-6 text-center bg-white text-black rounded-t-[40px]">
+<section id="skills"
+class="py-24 px-6 text-center bg-white text-black rounded-t-[40px]">
 
 <h2 class="text-5xl font-black uppercase mb-16">
   Skills
@@ -181,7 +246,7 @@ My focus is branding, UI/UX, and responsive web development that helps businesse
 
 <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
 
-<div class="p-6 border rounded-xl">
+<div class="p-6 border rounded-xl hover:scale-105 transition">
 
 <h3 class="text-2xl font-bold">
   🎨 Graphic Design
@@ -193,7 +258,7 @@ My focus is branding, UI/UX, and responsive web development that helps businesse
 
 </div>
 
-<div class="p-6 border rounded-xl">
+<div class="p-6 border rounded-xl hover:scale-105 transition">
 
 <h3 class="text-2xl font-bold">
   💻 Web Development
@@ -219,16 +284,16 @@ My focus is branding, UI/UX, and responsive web development that helps businesse
 <div class="grid md:grid-cols-3 gap-8">
 
 <!-- BRANDING -->
-<div 
+<div
 class="card bg-[#16161d] p-4 rounded-2xl cursor-pointer"
 onclick="openGallery('branding')">
 
-<img 
-src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead"
-class="rounded-xl"
+<img
+src="Poster.png"
+class="rounded-xl w-full h-[250px] object-cover"
 />
 
-<h3 class="mt-4 font-semibold">
+<h3 class="mt-4 font-semibold text-xl">
   Posters & Branding
 </h3>
 
@@ -239,16 +304,16 @@ class="rounded-xl"
 </div>
 
 <!-- WEB -->
-<div 
+<div
 class="card bg-[#16161d] p-4 rounded-2xl cursor-pointer"
 onclick="openGallery('web')">
 
-<img 
-src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
-class="rounded-xl"
+<img
+src="Website1.png"
+class="rounded-xl w-full h-[250px] object-cover"
 />
 
-<h3 class="mt-4 font-semibold">
+<h3 class="mt-4 font-semibold text-xl">
   Websites & UI Design
 </h3>
 
@@ -259,16 +324,16 @@ class="rounded-xl"
 </div>
 
 <!-- LOGO -->
-<div 
+<div
 class="card bg-[#16161d] p-4 rounded-2xl cursor-pointer"
 onclick="openGallery('logo')">
 
-<img 
-src="https://images.unsplash.com/photo-1626785774573-4b799315345d"
-class="rounded-xl"
+<img
+src="Logo1.png"
+class="rounded-xl w-full h-[250px] object-cover"
 />
 
-<h3 class="mt-4 font-semibold">
+<h3 class="mt-4 font-semibold text-xl">
   Logo & Thank You Cards
 </h3>
 
@@ -283,7 +348,7 @@ class="rounded-xl"
 </section>
 
 <!-- POPUP GALLERY -->
-<div 
+<div
 id="galleryModal"
 class="fixed inset-0 bg-black/90 hidden z-50 overflow-y-auto p-10">
 
@@ -291,9 +356,9 @@ class="fixed inset-0 bg-black/90 hidden z-50 overflow-y-auto p-10">
 
 <div class="flex justify-end mb-8">
 
-<button 
+<button
 onclick="closeGallery()"
-class="text-white text-4xl hover:text-purple-400">
+class="text-white text-5xl hover:text-purple-400 transition">
 
 &times;
 
@@ -301,12 +366,12 @@ class="text-white text-4xl hover:text-purple-400">
 
 </div>
 
-<h2 
+<h2
 id="galleryTitle"
 class="text-4xl font-black uppercase mb-10 text-center hero-heading">
 </h2>
 
-<div 
+<div
 id="galleryImages"
 class="grid md:grid-cols-3 gap-6">
 </div>
@@ -322,14 +387,14 @@ class="grid md:grid-cols-3 gap-6">
   Let’s Work Together
 </h2>
 
-<p class="text-[#D7E2EA] mt-6">
+<p class="text-[#D7E2EA] mt-6 text-lg">
   Ready to build something amazing?
 </p>
 
-<a 
+<a
 href="https://www.fiverr.com/s/xXzj8E4"
 target="_blank"
-class="px-8 py-3 border border-white rounded-full uppercase hover:bg-white hover:text-black transition inline-block">
+class="mt-8 px-8 py-3 border border-white rounded-full uppercase hover:bg-white hover:text-black hover:scale-105 transition inline-block">
 
 Contact Me
 
@@ -343,6 +408,17 @@ Contact Me
 </footer>
 
 <script>
+
+/* LOADER */
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+document.getElementById("loader").style.display="none";
+
+},1200);
+
+});
 
 /* CURSOR */
 const cursor=document.getElementById("cursor");
@@ -366,27 +442,28 @@ const rect=card.getBoundingClientRect();
 const x=e.clientX-rect.left;
 const y=e.clientY-rect.top;
 
-const rotateX=((y-rect.height/2)/rect.height)*-15;
-const rotateY=((x-rect.width/2)/rect.width)*15;
+const rotateX=((y-rect.height/2)/rect.height)*-12;
+const rotateY=((x-rect.width/2)/rect.width)*12;
 
 card.style.transform=`
 perspective(1000px)
 rotateX(${rotateX}deg)
 rotateY(${rotateY}deg)
-scale(1.05)
+scale(1.04)
 `;
 
 });
 
 card.addEventListener("mouseleave",()=>{
 
-card.style.transform="perspective(1000px) rotateX(0) rotateY(0) scale(1)";
+card.style.transform=
+"perspective(1000px) rotateX(0) rotateY(0) scale(1)";
 
 });
 
 });
 
-/* GALLERY DATA */
+/* GALLERY */
 const galleries={
 
 branding:{
@@ -397,7 +474,7 @@ images:[
 "Poster3.png"
 ]
 },
-  
+
 web:{
 title:"Websites & UI Design",
 images:[
@@ -414,7 +491,9 @@ images:[
 "Logo2.png",
 "Logo3.png"
 ]
-},
+}
+
+};
 
 /* OPEN GALLERY */
 function openGallery(category){
@@ -431,11 +510,11 @@ galleries[category].images.forEach(img=>{
 
 imagesContainer.innerHTML+=`
 
-<div class="bg-[#16161d] p-3 rounded-2xl">
+<div class="bg-[#16161d] p-3 rounded-2xl overflow-hidden shadow-2xl">
 
-<img 
+<img
 src="${img}"
-class="rounded-xl w-full h-[250px] object-cover hover:scale-105 transition duration-300"
+class="rounded-xl w-full h-[250px] object-cover hover:scale-110 transition duration-500"
 />
 
 </div>
@@ -446,6 +525,8 @@ class="rounded-xl w-full h-[250px] object-cover hover:scale-105 transition durat
 
 modal.classList.remove("hidden");
 
+document.body.style.overflow="hidden";
+
 }
 
 /* CLOSE GALLERY */
@@ -455,7 +536,22 @@ document
 .getElementById("galleryModal")
 .classList.add("hidden");
 
+document.body.style.overflow="auto";
+
 }
+
+/* CLOSE WHEN CLICK OUTSIDE */
+window.addEventListener("click",(e)=>{
+
+const modal=document.getElementById("galleryModal");
+
+if(e.target===modal){
+
+closeGallery();
+
+}
+
+});
 
 </script>
 
