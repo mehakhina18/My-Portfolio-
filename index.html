@@ -72,6 +72,13 @@ color:white;
 font-weight:600;
 cursor:pointer;
 box-shadow:0 0 20px #ff4fd8;
+text-decoration:none;
+display:inline-block;
+transition:0.3s;
+}
+
+.hire-btn:hover{
+transform:scale(1.05);
 }
 
 /* HERO */
@@ -189,6 +196,7 @@ border-color:#ff4fd8;
 width:100%;
 height:220px;
 object-fit:contain;
+background:#0b0613;
 }
 
 .project-content{
@@ -255,7 +263,7 @@ border:1px solid rgba(255,255,255,0.1);
 font-size:40px;
 }
 
-.contact-box button{
+.talk-btn{
 padding:18px 40px;
 border:none;
 border-radius:50px;
@@ -265,6 +273,13 @@ background:linear-gradient(90deg,#ff4fd8,#b300ff);
 color:white;
 cursor:pointer;
 box-shadow:0 0 20px #ff4fd8;
+text-decoration:none;
+display:inline-block;
+transition:0.3s;
+}
+
+.talk-btn:hover{
+transform:scale(1.05);
 }
 
 /* MOBILE */
@@ -318,21 +333,21 @@ SHEHZADI HOORAIN
 
 <ul>
 <li><a href="#">Home</a></li>
-<li><a href="#">About</a></li>
-<li><a href="#">Projects</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#projects">Projects</a></li>
 <li><a href="#">Skills</a></li>
-<li><a href="#">Contact</a></li>
+<li><a href="#contact">Contact</a></li>
 </ul>
 
-<button class="hire-btn">
+<a href="#contact" class="hire-btn">
 Hire Me
-</button>
+</a>
 
 </nav>
 
 <!-- HERO -->
 
-<section class="hero">
+<section class="hero" id="about">
 
 <div class="hero-image">
 <img src="image.png" alt="">
@@ -352,10 +367,10 @@ with 2 years of experience. I specialize in creating visually
 stunning designs and modern websites that help brands stand out.
 </p>
 
-<button class="hire-btn">
+<a href="cv.pdf" download class="hire-btn">
 Download CV
-</button>
-
+</a>
+  
 <div class="stats">
 
 <div class="stat-box">
@@ -386,7 +401,7 @@ Download CV
 
 <!-- PROJECTS -->
 
-<section class="projects">
+<section class="projects" id="projects">
 
 <h1 class="section-title">
 MY PROJECTS
@@ -409,10 +424,10 @@ WEB DESIGN
 <h3>Luxury Websites</h3>
 
 <p>
-"Step into a world of refined digital elegance and exclusivity."
+Step into a world of refined digital elegance and exclusivity.
 </p>
 
-<a href="#" class="project-btn">
+<a href="https://yourwebsite.com" target="_blank" class="project-btn">
 View Project
 </a>
 
@@ -435,10 +450,10 @@ GRAPHIC DESIGN
 <h3>Posters</h3>
 
 <p>
-"Turning ideas into powerful visual statements."
+Turning ideas into powerful visual statements.
 </p>
 
-<a href="#" class="project-btn">
+<a href="poster.png" target="_blank" class="project-btn">
 View Project
 </a>
 
@@ -461,10 +476,10 @@ GRAPHIC DESIGN
 <h3>Banners</h3>
 
 <p>
-"Professional banner designs that boost your brand presence."
+Professional banner designs that boost your brand presence.
 </p>
 
-<a href="#" class="project-btn">
+<a href="banner.jfif" target="_blank" class="project-btn">
 View Project
 </a>
 
@@ -478,7 +493,7 @@ View Project
 
 <!-- CONTACT -->
 
-<section class="contact">
+<section class="contact" id="contact">
 
 <div class="contact-box">
 
@@ -489,9 +504,9 @@ Let’s work together and create something amazing.
 </p>
 </div>
 
-<button>
+<a href="mailto:yourmail@gmail.com" class="talk-btn">
 Let's Talk
-</button>
+</a>
 
 </div>
 
