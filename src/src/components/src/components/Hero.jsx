@@ -1,3 +1,4 @@
+import StarBackground from "./Stars";
 import { ArrowDown } from "lucide-react";
 
 export default function Hero() {
@@ -6,6 +7,7 @@ export default function Hero() {
       id="home"
       className="relative h-screen overflow-hidden flex items-center justify-center"
     >
+      <StarBackground />
       {/* Video Background */}
       <video
         autoPlay
