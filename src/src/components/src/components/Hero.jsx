@@ -8,6 +8,7 @@ export default function Hero() {
       className="relative h-screen overflow-hidden flex items-center justify-center"
     >
       <StarBackground />
+      import FloatingGlow from "./FloatingGlow";
       {/* Video Background */}
       <video
         autoPlay
